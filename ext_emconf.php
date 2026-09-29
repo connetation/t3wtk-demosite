@@ -14,6 +14,8 @@ $EM_CONF[$_EXTKEY] = [
             'form' => '14.0.0-14.99.99',
             'conn_t3kit_base' => '2.0.0-0.0.0',
             'conn_t3kit_elements' => '2.0.0-0.0.0',
+        ],
+        'suggests' => [
             'conn_t3kit_sitepackage' => '2.0.0-0.0.0',
         ],
     ],

@@ -7,8 +7,10 @@
         "typo3/cms-core": "^14.0",
         "typo3/cms-form": "^14.0",
         "conn/t3kit-base": "^2.0.0",
-        "conn/t3kit-elements": "^2.0.0",
-        "conn/t3kit-sitepackage": "^2.0.0"
+        "conn/t3kit-elements": "^2.0.0"
+    },
+    "suggest": {
+        "conn/t3kit-sitepackage": "Required at runtime (Site Set dependency). Installed by the project itself, e.g. as a local path package in packages/ via t3kit-quickstart-shell"
     },
     "autoload": {
         "psr-4": {

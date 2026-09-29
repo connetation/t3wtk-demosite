@@ -16,6 +16,12 @@ composer require conn/t3kit-demosite
 vendor/bin/typo3 extension:setup -e conn_t3kit_demosite
 ```
 
+`conn/t3kit-sitepackage` must already be installed in the project. It is only
+suggested in `composer.json`, not required, because every project owns its own
+copy of it (e.g. `t3kit-quickstart-shell` moves it to `packages/` as a
+`dev-local` path package, which a `^2.0.0` constraint would not accept). The
+Site Set still declares `conn/t3kit-sitepackage` as a dependency.
+
 `extension:setup` (also run by the TYPO3 installer and by activating the
 extension in the Extension Manager) does the following once:
 
