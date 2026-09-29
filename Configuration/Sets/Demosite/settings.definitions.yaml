@@ -1,0 +1,25 @@
+categories:
+  conn.demosite:
+    label: 'Demo site'
+
+settings:
+  demosite.themeSwitcher.enabled:
+    label: 'Theme preview banner'
+    description: 'Shows a banner that lets visitors preview every installed conn/t3kit-theme-* set. The site must have one theme set selected; the choice is stored per visitor in a cookie.'
+    type: bool
+    default: true
+    category: conn.demosite
+
+  demosite.logo.onLight:
+    label: 'Demo logo – for light backgrounds'
+    description: 'Dark logo variant. Used for every navbar/footer logo slot whose background is light in the active theme (unless branding.logo* / footer.logo* are set). EXT: path, fileadmin path or full URL.'
+    type: string
+    default: 'fileadmin/conn_t3kit_demosite/images/t3kit-logo-dark.svg'
+    category: conn.demosite
+
+  demosite.logo.onDark:
+    label: 'Demo logo – for dark backgrounds'
+    description: 'Light logo variant. Used for every navbar/footer logo slot whose background is dark in the active theme (e.g. Midnight''s navbar). Empty both to show the site title instead.'
+    type: string
+    default: 'fileadmin/conn_t3kit_demosite/images/t3kit-logo-light.svg'
+    category: conn.demosite

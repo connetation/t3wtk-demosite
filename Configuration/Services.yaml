@@ -6,3 +6,7 @@ services:
 
   Connetation\T3kitDemosite\:
     resource: '../Classes/*'
+
+  Connetation\T3kitDemosite\DataProcessing\ThemeSwitcherProcessor:
+    tags:
+      - { name: 'data.processor', identifier: 'conn-demosite-theme-switcher' }

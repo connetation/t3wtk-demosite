@@ -1,0 +1,135 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Connetation\T3kitDemosite\Middleware;
+
+use Connetation\T3kitDemosite\Theme\Theme;
+use Connetation\T3kitDemosite\Theme\ThemeLogos;
+use Connetation\T3kitDemosite\Theme\ThemeRegistry;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use Symfony\Component\HttpFoundation\Cookie;
+use TYPO3\CMS\Core\Http\NormalizedParams;
+use TYPO3\CMS\Core\Http\RedirectResponse;
+use TYPO3\CMS\Core\Site\Entity\Site;
+use TYPO3\CMS\Core\Site\SiteSettingsFactory;
+
+/**
+ * Lets visitors of the demo site preview every conn/t3kit-theme-* set.
+ *
+ * ?t3kit-theme=<identifier> stores the choice in a cookie and redirects to the
+ * same URL without the parameter. On every request the chosen theme set then
+ * replaces the site's configured theme set (or is added / removed for the
+ * default look), and the site settings are composed anew, so colors, navbar,
+ * footer and toggle position all follow the theme.
+ * The switcher is only active when demosite.themeSwitcher.enabled is set; the
+ * demo logos (ThemeLogos, demosite.logo.*) are filled in either way.
+ */
+final readonly class ThemeSwitcherMiddleware implements MiddlewareInterface
+{
+    public const PARAMETER = 't3kit-theme';
+    public const COOKIE = 't3kit_theme';
+    /** Request attribute holding the identifier of the theme this request renders with. */
+    public const ATTRIBUTE = 'conn.demosite.theme';
+
+    public function __construct(
+        private ThemeRegistry $themeRegistry,
+        private SiteSettingsFactory $siteSettingsFactory,
+    ) {}
+
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        $site = $request->getAttribute('site');
+        if (!$site instanceof Site) {
+            return $handler->handle($request);
+        }
+        $switcherEnabled = (bool)$site->getSettings()->get('demosite.themeSwitcher.enabled', false);
+        if (!$switcherEnabled && !ThemeLogos::isEnabled($site->getSettings())) {
+            return $handler->handle($request);
+        }
+        $configuredTheme = $this->themeRegistry->findInSets($site->getSets());
+
+        $theme = $configuredTheme;
+        if ($switcherEnabled) {
+            $queryParams = $request->getQueryParams();
+            if (array_key_exists(self::PARAMETER, $queryParams)) {
+                return $this->storeChoice($request, $site, $configuredTheme, (string)$queryParams[self::PARAMETER]);
+            }
+            $theme = $this->themeRegistry->getTheme((string)($request->getCookieParams()[self::COOKIE] ?? '')) ?? $configuredTheme;
+        }
+
+        return $handler->handle(
+            $request
+                ->withAttribute('site', $this->createSite($site, $configuredTheme, $theme))
+                ->withAttribute(self::ATTRIBUTE, $theme->identifier)
+        );
+    }
+
+    /** The site as it renders with $to instead of its configured theme, with the demo logos filled in. */
+    private function createSite(Site $site, Theme $from, Theme $to): Site
+    {
+        if ($to->setName === $from->setName) {
+            $sets = $site->getSets();
+            $settings = $site->getSettings();
+        } else {
+            $sets = array_values(array_filter(
+                $site->getSets(),
+                static fn(string $set): bool => $from->isDefault() || $set !== $from->setName
+            ));
+            if (!$to->isDefault()) {
+                // Take the configured theme's place in the list, or go last.
+                $position = $from->isDefault() ? false : array_search($from->setName, $site->getSets(), true);
+                array_splice($sets, $position === false ? count($sets) : (int)$position, 0, [$to->setName]);
+            }
+            // Same order as the core: set defaults first, the site's own settings.yaml on top.
+            $settings = $this->siteSettingsFactory->composeSettings(
+                $this->siteSettingsFactory->loadLocalSettings($site->getIdentifier()) ?? ($site->getRawConfiguration()['settings'] ?? []),
+                $sets
+            );
+        }
+
+        $configuration = $site->getRawConfiguration();
+        $configuration['dependencies'] = $sets;
+
+        return new Site(
+            $site->getIdentifier(),
+            $site->getRootPageId(),
+            $configuration,
+            ThemeLogos::apply($settings),
+            $site->getTypoScript(),
+            $site->getTSconfig()
+        );
+    }
+
+    /** Unknown identifiers or the site's own theme reset the choice (cookie removed). */
+    private function storeChoice(ServerRequestInterface $request, Site $site, Theme $configuredTheme, string $identifier): ResponseInterface
+    {
+        $queryParams = $request->getQueryParams();
+        unset($queryParams[self::PARAMETER]);
+        $response = new RedirectResponse(
+            $request->getUri()->withQuery(http_build_query($queryParams)),
+            303,
+            ['Cache-Control' => 'no-store']
+        );
+
+        $theme = $this->themeRegistry->getTheme($identifier);
+        $keep = $theme !== null && $theme->setName !== $configuredTheme->setName;
+        $normalizedParams = $request->getAttribute('normalizedParams');
+        $cookie = Cookie::create(
+            self::COOKIE,
+            $keep ? $theme->identifier : '',
+            $keep ? time() + 30 * 86400 : 1,
+            rtrim($site->getBase()->getPath(), '/') . '/',
+            null,
+            $normalizedParams instanceof NormalizedParams && $normalizedParams->isHttps(),
+            true,
+            false,
+            Cookie::SAMESITE_LAX
+        );
+
+        return $response->withAddedHeader('Set-Cookie', (string)$cookie);
+    }
+}

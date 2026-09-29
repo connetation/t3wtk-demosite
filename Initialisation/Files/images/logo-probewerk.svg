@@ -1,4 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="220" height="60" viewBox="0 0 220 60" role="img" aria-label="Probewerk">
-  <path d="M12 18h32L28 46z" fill="#6366f1"/>
+  <path d="M12 18h32L28 46z" fill="#6366f1"></path>
   <text x="58" y="38" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#4338ca">Probewerk</text>
 </svg>

@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="220" height="60" viewBox="0 0 220 60" role="img" aria-label="Beispiel AG">
-  <circle cx="28" cy="30" r="14" fill="#f59e0b"/><circle cx="28" cy="30" r="6" fill="#fff"/>
+  <circle cx="28" cy="30" r="14" fill="#f59e0b"></circle>
+  <circle cx="28" cy="30" r="6" fill="#fff"></circle>
   <text x="58" y="38" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#b45309">Beispiel AG</text>
 </svg>

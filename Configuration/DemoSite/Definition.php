@@ -842,8 +842,9 @@ return [
         ]],
     ],
     // Site-specific values only. Colors, navbar and footer layout come from the conn/t3kit-base
-    // theme Set — values here would override every theme. No logo: the site title is shown,
-    // which works on every theme (a single logo image can't suit light and dark navbars).
+    // theme Set — values here would override every theme. No branding.logo* here: the demo
+    // logos (demosite.logo.*) are picked per theme by Theme/ThemeLogos, since a single logo
+    // image can't suit light and dark navbars.
     'settings' => [
         'branding.logoAlt' => 't3kit demo',
         'footer.tagline' => 'Beautiful TYPO3 websites, built with t3kit.',

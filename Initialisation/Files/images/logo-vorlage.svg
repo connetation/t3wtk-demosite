@@ -1,4 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="220" height="60" viewBox="0 0 220 60" role="img" aria-label="Vorlage &amp; Co">
-  <path d="M28 12l14 18-14 18-14-18z" fill="#0ea5e9"/>
+  <path d="M28 12l14 18-14 18-14-18z" fill="#0ea5e9"></path>
   <text x="58" y="38" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#0369a1">Vorlage &amp; Co</text>
 </svg>

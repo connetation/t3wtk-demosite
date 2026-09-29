@@ -11,3 +11,37 @@ plugin.tx_form.settings.formDefinitionOverrides.contact {
     finishers.1.options.pageUid = TEXT
     finishers.1.options.pageUid.data = site:rootPageId
 }
+
+# ─────────────────────────────────────────────
+# Theme preview banner (Middleware/ThemeSwitcherMiddleware.php)
+# ─────────────────────────────────────────────
+page.5 = FLUIDTEMPLATE
+page.5 {
+    if.isTrue.data = sitesettings:demosite.themeSwitcher.enabled
+    templateName = Banner
+    templateRootPaths.10 = EXT:conn_t3kit_demosite/Resources/Private/Templates/ThemeSwitcher/
+    dataProcessing.10 = conn-demosite-theme-switcher
+}
+
+page.includeCSS.connDemoThemes = EXT:conn_t3kit_demosite/Resources/Public/Css/theme-switcher.css
+
+# conn_t3kit_base reads these settings as TypoScript constants, which the core
+# caches without their values — read them at render time from the (possibly
+# switched) site instead, so each theme gets its own.
+page.bodyTagCObject.20.if.isTrue >
+page.bodyTagCObject.20.if.isTrue.data = sitesettings:themeToggle.position
+page.bodyTagCObject.30.if.isTrue >
+page.bodyTagCObject.30.if.isTrue.data = sitesettings:theme.linkHoverEffect
+
+page.headerData.20 = TEXT
+page.headerData.20 {
+    data = sitesettings:theme.light.bg
+    wrap = <meta name="theme-color" content="|" media="(prefers-color-scheme: light)">
+    htmlSpecialChars = 1
+    required = 1
+}
+page.headerData.21 < page.headerData.20
+page.headerData.21 {
+    data = sitesettings:theme.dark.bg
+    wrap = <meta name="theme-color" content="|" media="(prefers-color-scheme: dark)">
+}

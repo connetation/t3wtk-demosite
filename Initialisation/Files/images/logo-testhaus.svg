@@ -1,4 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="220" height="60" viewBox="0 0 220 60" role="img" aria-label="Testhaus">
-  <circle cx="28" cy="30" r="15" fill="none" stroke="#db2777" stroke-width="4"/><circle cx="40" cy="20" r="5" fill="#db2777"/>
+  <circle cx="28" cy="30" r="15" fill="none" stroke="#db2777" stroke-width="4"></circle>
+  <circle cx="40" cy="20" r="5" fill="#db2777"></circle>
   <text x="58" y="38" font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="22" font-weight="700" fill="#be185d">Testhaus</text>
 </svg>
