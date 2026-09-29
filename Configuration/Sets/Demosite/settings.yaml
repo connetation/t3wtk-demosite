@@ -1,0 +1,4 @@
+# The look (colors, navigation, footer, toggle position) comes from a conn/t3kit-base
+# theme Set selected next to this one (conn/t3kit-theme-*). Only set keys here that no
+# theme sets — otherwise the order between this Set and the theme is undefined.
+themeToggle.enabled: true

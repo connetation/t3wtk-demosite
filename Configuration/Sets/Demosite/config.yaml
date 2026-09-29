@@ -1,0 +1,11 @@
+name: conn/t3kit-demosite
+label: 't3kit Demo Site'
+# Content + functionality of the demo. Select one conn/t3kit-base theme next to it
+# (conn/t3kit-theme-indigo|forest|sunset|midnight) for colors, navigation and footer.
+dependencies:
+  - conn/t3kit-sitepackage
+  - conn/t3kit-elements
+  - typo3/form
+optionalDependencies:
+  - conn/news
+  - conn/events

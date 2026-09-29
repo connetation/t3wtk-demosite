@@ -1,0 +1,13 @@
+# ─────────────────────────────────────────────
+# t3kit Demo Site
+# conn/t3kit-sitepackage (and with it conn/t3kit-base + conn/t3kit-elements)
+# is loaded via the Set dependencies in config.yaml.
+# ─────────────────────────────────────────────
+
+# The shared contact form (EXT:conn_t3kit_sitepackage/Resources/Private/Forms/Contact.form.yaml)
+# redirects to page uid 1 after submit — on the demo site that is not the demo root page.
+# finishers.1 = Redirect.
+plugin.tx_form.settings.formDefinitionOverrides.contact {
+    finishers.1.options.pageUid = TEXT
+    finishers.1.options.pageUid.data = site:rootPageId
+}

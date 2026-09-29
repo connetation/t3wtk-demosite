@@ -1,0 +1,23 @@
+{
+    "name": "conn/t3kit-demosite",
+    "description": "Connetation t3kit demo site – installs a complete demo page tree, site configuration and content built with conn/t3kit-base and conn/t3kit-elements (TYPO3 LTS 14)",
+    "type": "typo3-cms-extension",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "typo3/cms-core": "^14.0",
+        "typo3/cms-form": "^14.0",
+        "conn/t3kit-base": "^2.0.0",
+        "conn/t3kit-elements": "^2.0.0",
+        "conn/t3kit-sitepackage": "^2.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Connetation\\T3kitDemosite\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "conn_t3kit_demosite"
+        }
+    }
+}
