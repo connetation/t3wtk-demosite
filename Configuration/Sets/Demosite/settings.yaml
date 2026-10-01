@@ -9,3 +9,6 @@ branding.faviconIco: 'EXT:conn_t3kit_demosite/Resources/Public/Icons/Favicon/fav
 branding.appleTouchIcon: 'EXT:conn_t3kit_demosite/Resources/Public/Icons/Favicon/apple-touch-icon.png'
 branding.manifestIcon192: 'EXT:conn_t3kit_demosite/Resources/Public/Icons/Favicon/icon-192.png'
 branding.manifestIcon512: 'EXT:conn_t3kit_demosite/Resources/Public/Icons/Favicon/icon-512.png'
+
+# Small gap between main content and footer (instead of the default --conn-space-lg).
+footer.beforeSpacing: medium

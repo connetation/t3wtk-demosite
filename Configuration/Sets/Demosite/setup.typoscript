@@ -47,3 +47,6 @@ page.headerData.21 {
     data = sitesettings:theme.dark.bg
     wrap = <meta name="theme-color" content="|" media="(prefers-color-scheme: dark)">
 }
+
+# Page template override: Default without the container's pb-5.
+page.10.templateRootPaths.20 = EXT:conn_t3kit_demosite/Resources/Private/Templates/Page/
