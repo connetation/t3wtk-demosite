@@ -1,18 +1,135 @@
 /* Theme preview switcher (demo site only): fixed to the left edge, vertically
-   centered, one button per theme stacked. Uses the active theme's tokens. */
+   centered. A vertical "Themes" tab that opens a panel next to it with one
+   button per theme, stacked. Uses the active theme's tokens (radius follows
+   theme.radius). */
 .conn-demo-themes {
+    --conn-demo-radius: var(--conn-radius, 0.75rem);
     position: fixed;
     top: 50%;
     left: 0;
     z-index: 1045; /* above navbar (1030), below offcanvas/modals */
     transform: translateY(-50%);
-    padding: 0.5rem;
     background: var(--conn-surface, #fff);
     border: 1px solid var(--conn-border, rgba(0, 0, 0, 0.1));
     border-left: 0;
-    border-radius: 0 0.75rem 0.75rem 0;
+    border-radius: 0 var(--conn-demo-radius) var(--conn-demo-radius) 0;
     box-shadow: 0 4px 16px rgb(0 0 0 / 12%);
     font-size: 0.8125rem;
+}
+
+/* ── Toggle: narrow edge tile — icon, short horizontal caption, count ── */
+.conn-demo-themes__toggle {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    min-width: 3.5rem;
+    padding: 0.65rem 0.5rem 0.6rem;
+    /* Not "inherit": in Chrome the <summary> sits in the <details> shadow slot, so it
+       would inherit the slot's square corners. Inner radius = outer minus the border. */
+    border-radius: 0 max(0px, calc(var(--conn-demo-radius) - 1px)) max(0px, calc(var(--conn-demo-radius) - 1px)) 0;
+    color: var(--conn-text, inherit);
+    font-weight: 600;
+    line-height: 1;
+    transition: background-color 0.2s ease;
+    white-space: nowrap;
+    list-style: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.conn-demo-themes__toggle:hover,
+.conn-demo-themes[open] .conn-demo-themes__toggle {
+    background: color-mix(in srgb, var(--conn-demo-current, #6366f1) 10%, transparent);
+}
+
+.conn-demo-themes__toggle::-webkit-details-marker {
+    display: none;
+}
+
+.conn-demo-themes__toggle:focus-visible {
+    outline: 2px solid var(--conn-demo-current, var(--conn-accent, currentColor));
+    outline-offset: 2px;
+}
+
+.conn-demo-themes__icon {
+    flex: none;
+    width: 1.375rem;
+    height: 1.375rem;
+    color: var(--conn-demo-current, var(--conn-accent, currentColor));
+}
+
+/* Horizontal caption: readable without tilting your head, still narrow */
+.conn-demo-themes__label {
+    font-size: 0.625rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.conn-demo-themes__count {
+    min-width: 1.25rem;
+    margin-top: 0.15rem;
+    padding: 0.2rem 0.4rem;
+    border-radius: var(--conn-radius-pill, 999px);
+    background: var(--conn-demo-current, var(--conn-accent, #6366f1));
+    color: #fff;
+    font-size: 0.6875rem;
+    text-align: center;
+}
+
+/* Attention cue while closed: a ring pulses out of the toggle and the palette
+   icon wiggles, every few seconds. Stops once the visitor has opened the
+   switcher (.is-seen, remembered by theme-switcher.js) and for reduced motion. */
+.conn-demo-themes:not([open]):not(.is-seen) .conn-demo-themes__toggle::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 0 var(--conn-demo-radius) var(--conn-demo-radius) 0;
+    pointer-events: none;
+    animation: conn-demo-themes-pulse 3.5s ease-out 1.5s infinite;
+}
+
+.conn-demo-themes:not([open]):not(.is-seen) .conn-demo-themes__icon {
+    animation: conn-demo-themes-wiggle 3.5s ease-in-out 1.5s infinite;
+}
+
+@keyframes conn-demo-themes-pulse {
+    0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--conn-demo-current, #6366f1) 55%, transparent); }
+    45%, 100% { box-shadow: 0 0 0 12px transparent; }
+}
+
+@keyframes conn-demo-themes-wiggle {
+    0%, 30%, 100% { transform: rotate(0); }
+    6% { transform: rotate(-18deg) scale(1.1); }
+    12% { transform: rotate(14deg) scale(1.1); }
+    18% { transform: rotate(-8deg); }
+    24% { transform: rotate(4deg); }
+}
+
+/* ── Panel: opens to the right of the tab, vertically centered on it ── */
+.conn-demo-themes__panel {
+    position: absolute;
+    top: 50%;
+    left: calc(100% + 0.5rem);
+    translate: 0 -50%;
+    max-height: min(80vh, 36rem);
+    padding: 0.5rem;
+    background: var(--conn-surface, #fff);
+    border: 1px solid var(--conn-border, rgba(0, 0, 0, 0.1));
+    border-radius: var(--conn-demo-radius);
+    box-shadow: 0 4px 16px rgb(0 0 0 / 12%);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+.conn-demo-themes[open]:not(.is-restored) .conn-demo-themes__panel {
+    animation: conn-demo-themes-open 0.2s ease-out;
+}
+
+@keyframes conn-demo-themes-open {
+    from { opacity: 0; transform: translateX(-0.5rem); }
+    to { opacity: 1; transform: none; }
 }
 
 .conn-demo-themes__list {
@@ -30,7 +147,7 @@
     gap: 0.5rem;
     padding: 0.3rem 0.7rem 0.3rem 0.45rem;
     border: 1px solid var(--conn-border-strong, rgba(0, 0, 0, 0.2));
-    border-radius: 999px;
+    border-radius: var(--conn-radius-pill, 999px);
     color: var(--conn-text, inherit);
     text-decoration: none;
     line-height: 1.4;
@@ -63,9 +180,10 @@
     background: var(--conn-demo-swatch, currentColor);
 }
 
-/* Small screens: swatches only, names stay available as title/accessible text. */
+/* Small screens: swatches only in the panel; names stay available as
+   title/accessible text. */
 @media (max-width: 767.98px) {
-    .conn-demo-themes { padding: 0.375rem; }
+    .conn-demo-themes__panel { padding: 0.375rem; }
 
     .conn-demo-themes .conn-demo-themes__theme { padding: 0.4rem; }
 
@@ -76,5 +194,12 @@
         overflow: hidden;
         clip: rect(0 0 0 0);
         white-space: nowrap;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .conn-demo-themes *,
+    .conn-demo-themes *::after {
+        animation: none !important;
     }
 }

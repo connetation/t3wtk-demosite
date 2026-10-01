@@ -10,7 +10,7 @@ use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
 /**
- * Provides the theme list for the switcher banner (Templates/ThemeSwitcher/Banner.html):
+ * Provides the theme list for the switcher (Templates/ThemeSwitcher/Banner.html):
  * one entry per conn/t3kit-theme-* set, each linking to the current URL plus
  * ?t3kit-theme=<identifier> (handled by ThemeSwitcherMiddleware).
  */
@@ -48,6 +48,8 @@ final readonly class ThemeSwitcherProcessor implements DataProcessorInterface
         $processedData[$cObj->stdWrapValue('as', $processorConfiguration, 'themeSwitcher')] = [
             'themes' => $themes,
             'active' => $active,
+            // Entry of the active theme, for the collapsed toggle button
+            'current' => current(array_filter($themes, static fn(array $theme): bool => $theme['active'])) ?: null,
         ];
 
         return $processedData;

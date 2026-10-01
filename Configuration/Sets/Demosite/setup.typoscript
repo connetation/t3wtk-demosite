@@ -24,6 +24,8 @@ page.5 {
 }
 
 page.includeCSS.connDemoThemes = EXT:conn_t3kit_demosite/Resources/Public/Css/theme-switcher.css
+page.includeJSFooter.connDemoThemes = EXT:conn_t3kit_demosite/Resources/Public/JavaScript/theme-switcher.js
+page.includeJSFooter.connDemoThemes.defer = 1
 
 # conn_t3kit_base reads these settings as TypoScript constants, which the core
 # caches without their values — read them at render time from the (possibly

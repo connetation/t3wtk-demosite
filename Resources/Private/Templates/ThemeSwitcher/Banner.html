@@ -1,21 +1,36 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:if condition="{themeSwitcher.themes -> f:count()} > 1">
-    <nav class="conn-demo-themes" aria-label="Preview theme">
-        <ul class="conn-demo-themes__list">
-            <f:for each="{themeSwitcher.themes}" as="theme">
-                <li>
-                    <a href="{theme.href}"
-                       class="conn-demo-themes__theme{f:if(condition: theme.active, then: ' is-active')}"
-                       style="--conn-demo-swatch: {theme.accent}"
-                       title="{theme.label}"
-                       aria-current="{f:if(condition: theme.active, then: 'true', else: 'false')}"
-                       rel="nofollow">
-                        <span class="conn-demo-themes__swatch" aria-hidden="true"></span>
-                        <span class="conn-demo-themes__name">{theme.label}</span>
-                    </a>
-                </li>
-            </f:for>
-        </ul>
-    </nav>
+    <f:comment>Collapsed by default: <details> opens/closes without JavaScript; theme-switcher.js adds
+        Escape, click outside and keeping it open across a theme switch.</f:comment>
+    <details class="conn-demo-themes" style="--conn-demo-current: {themeSwitcher.current.accent}">
+        <summary class="conn-demo-themes__toggle" title="Preview theme">
+            <svg class="conn-demo-themes__icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22a10 10 0 1 1 10-10c0 2.8-2.2 4-4 4h-1.8a2 2 0 0 0-1.4 3.4c.5.6.2 2.6-2.8 2.6z"/>
+                <circle cx="7.5" cy="11" r="1.25" fill="currentColor" stroke="none"/>
+                <circle cx="10.5" cy="7" r="1.25" fill="currentColor" stroke="none"/>
+                <circle cx="15.5" cy="7.5" r="1.25" fill="currentColor" stroke="none"/>
+            </svg>
+            <span class="conn-demo-themes__label">Themes</span>
+            <span class="conn-demo-themes__count" aria-hidden="true">{themeSwitcher.themes -> f:count()}</span>
+        </summary>
+        <nav class="conn-demo-themes__panel" aria-label="Preview theme">
+            <ul class="conn-demo-themes__list">
+                <f:for each="{themeSwitcher.themes}" as="theme">
+                    <li>
+                        <a href="{theme.href}"
+                           class="conn-demo-themes__theme{f:if(condition: theme.active, then: ' is-active')}"
+                           style="--conn-demo-swatch: {theme.accent}"
+                           title="{theme.label}"
+                           aria-current="{f:if(condition: theme.active, then: 'true', else: 'false')}"
+                           rel="nofollow">
+                            <span class="conn-demo-themes__swatch" aria-hidden="true"></span>
+                            <span class="conn-demo-themes__name">{theme.label}</span>
+                        </a>
+                    </li>
+                </f:for>
+            </ul>
+        </nav>
+    </details>
 </f:if>
 </html>

@@ -4,8 +4,8 @@ categories:
 
 settings:
   demosite.themeSwitcher.enabled:
-    label: 'Theme preview banner'
-    description: 'Shows a banner that lets visitors preview every installed conn/t3kit-theme-* set. The site must have one theme set selected; the choice is stored per visitor in a cookie.'
+    label: 'Theme preview switcher'
+    description: 'Shows a small "Themes" button at the left edge that expands to let visitors preview every installed conn/t3kit-theme-* set. The site must have one theme set selected; the choice is stored per visitor in a cookie.'
     type: bool
     default: true
     category: conn.demosite
