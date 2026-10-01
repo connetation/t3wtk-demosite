@@ -1,18 +1,19 @@
-/* Theme preview switcher (demo site only): fixed to the left edge, vertically
-   centered. A vertical "Themes" tab that opens a panel next to it with one
+/* Theme preview switcher (demo site only): fixed to the right edge, low on the
+   screen (centered at 85% of the viewport height; docked to the bottom on small
+   screens). A vertical "Themes" tab that opens a panel to its left with one
    button per theme, stacked. Uses the active theme's tokens (radius follows
    theme.radius). */
 .conn-demo-themes {
     --conn-demo-radius: var(--conn-radius, 0.75rem);
     position: fixed;
-    top: 50%;
-    left: 0;
+    top: 85%;
+    right: 0;
     z-index: 1045; /* above navbar (1030), below offcanvas/modals */
     transform: translateY(-50%);
     background: var(--conn-surface, #fff);
     border: 1px solid var(--conn-border, rgba(0, 0, 0, 0.1));
-    border-left: 0;
-    border-radius: 0 var(--conn-demo-radius) var(--conn-demo-radius) 0;
+    border-right: 0;
+    border-radius: var(--conn-demo-radius) 0 0 var(--conn-demo-radius);
     box-shadow: 0 4px 16px rgb(0 0 0 / 12%);
     font-size: 0.8125rem;
 }
@@ -28,7 +29,7 @@
     padding: 0.65rem 0.5rem 0.6rem;
     /* Not "inherit": in Chrome the <summary> sits in the <details> shadow slot, so it
        would inherit the slot's square corners. Inner radius = outer minus the border. */
-    border-radius: 0 max(0px, calc(var(--conn-demo-radius) - 1px)) max(0px, calc(var(--conn-demo-radius) - 1px)) 0;
+    border-radius: max(0px, calc(var(--conn-demo-radius) - 1px)) 0 0 max(0px, calc(var(--conn-demo-radius) - 1px));
     color: var(--conn-text, inherit);
     font-weight: 600;
     line-height: 1;
@@ -85,7 +86,7 @@
     content: "";
     position: absolute;
     inset: -1px;
-    border-radius: 0 var(--conn-demo-radius) var(--conn-demo-radius) 0;
+    border-radius: var(--conn-demo-radius) 0 0 var(--conn-demo-radius);
     pointer-events: none;
     animation: conn-demo-themes-pulse 3.5s ease-out 1.5s infinite;
 }
@@ -107,13 +108,13 @@
     24% { transform: rotate(4deg); }
 }
 
-/* ── Panel: opens to the right of the tab, vertically centered on it ── */
+/* ── Panel: opens to the left of the tab, bottom-aligned with it so it grows
+   upwards (the tab sits low on the screen) ── */
 .conn-demo-themes__panel {
     position: absolute;
-    top: 50%;
-    left: calc(100% + 0.5rem);
-    translate: 0 -50%;
-    max-height: min(80vh, 36rem);
+    right: calc(100% + 0.5rem);
+    bottom: 0;
+    max-height: min(75vh, 36rem);
     padding: 0.5rem;
     background: var(--conn-surface, #fff);
     border: 1px solid var(--conn-border, rgba(0, 0, 0, 0.1));
@@ -128,7 +129,7 @@
 }
 
 @keyframes conn-demo-themes-open {
-    from { opacity: 0; transform: translateX(-0.5rem); }
+    from { opacity: 0; transform: translateX(0.5rem); }
     to { opacity: 1; transform: none; }
 }
 
@@ -180,20 +181,44 @@
     background: var(--conn-demo-swatch, currentColor);
 }
 
-/* Small screens: swatches only in the panel; names stay available as
-   title/accessible text. */
+/* Small screens: compact tab (icon + count, no caption) docked to the bottom;
+   the panel keeps the full theme names but may not run past the left edge. */
 @media (max-width: 767.98px) {
-    .conn-demo-themes__panel { padding: 0.375rem; }
+    .conn-demo-themes {
+        top: auto;
+        bottom: 1rem;
+        transform: none;
+    }
 
-    .conn-demo-themes .conn-demo-themes__theme { padding: 0.4rem; }
+    .conn-demo-themes__toggle {
+        gap: 0.25rem;
+        min-width: 2.5rem;
+        padding: 0.45rem 0.35rem 0.4rem;
+    }
 
-    .conn-demo-themes__name {
+    .conn-demo-themes__icon {
+        width: 1.125rem;
+        height: 1.125rem;
+    }
+
+    .conn-demo-themes__label {
         position: absolute;
         width: 1px;
         height: 1px;
         overflow: hidden;
         clip: rect(0 0 0 0);
         white-space: nowrap;
+    }
+
+    .conn-demo-themes__count {
+        margin-top: 0;
+        padding: 0.15rem 0.3rem;
+        font-size: 0.625rem;
+    }
+
+    .conn-demo-themes__panel {
+        max-width: calc(100vw - 4rem);
+        padding: 0.375rem;
     }
 }
 
