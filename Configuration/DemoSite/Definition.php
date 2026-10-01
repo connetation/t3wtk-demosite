@@ -417,7 +417,7 @@ $pages = [[
                     ['CType' => 'conn_alert', 'header' => 'Did you know?', 'bodytext' => $p('All colors in this demo come from the site settings — change them in Site Management → Settings.'), '_flexform' => ['sDEF' => ['settings.style' => 'info']], 'space_after_class' => 'small'],
                     ['CType' => 'conn_alert', 'header' => 'Success', 'bodytext' => $p('The demo site was installed successfully.'), '_flexform' => ['sDEF' => ['settings.style' => 'success']], 'space_after_class' => 'small'],
                     ['CType' => 'conn_alert', 'header' => 'Heads up', 'bodytext' => $p('This is demo content. Replace it before going live.'), '_flexform' => ['sDEF' => ['settings.style' => 'warning'], 'dismiss' => ['settings.dismissible' => '1']], 'space_after_class' => 'small'],
-                    ['CType' => 'conn_alert', 'header' => 'Custom style', 'bodytext' => $p('Alerts can use any icon and your own colors.'), 'tx_conn_t3kit_elements_alert_custom_icon_name' => 'stars', '_flexform' => ['sDEF' => ['settings.style' => 'custom'], 'custom' => ['settings.customAccentColor' => '#8b5cf6', 'settings.customBackgroundColor' => '#8b5cf61a'], 'border' => ['settings.borderRadius' => 'large']]],
+                    ['CType' => 'conn_alert', 'header' => 'Custom style', 'bodytext' => $p('Alerts can use any icon and your own colors.'), 'tx_conn_t3kit_elements_alert_custom_icon_name' => 'stars', '_flexform' => ['sDEF' => ['settings.style' => 'custom'], 'custom' => ['settings.customAccentColor' => '#8b5cf6', 'settings.customBackgroundColor' => '#8b5cf61a']]],
                 ]),
                 $showcasePage('cards', 'Cards & Layout', 'Card groups, feature grids, stacked cards and container-based column layouts.', 'card-teal.jpg', [
                     $intro('Cards & Layout', 'Cards and columns', 'Arrange content in cards and grids. Container elements put any element side by side.'),
@@ -513,7 +513,7 @@ $pages = [[
                             ['title' => 'Second slide', 'caption' => $p('Optional fade effect and autoplay.'), '_files' => ['image' => ['hero-sunset.jpg']]],
                             ['title' => 'Third slide', 'caption' => $p('Opens in a lightbox if you like.'), '_files' => ['image' => ['hero-ocean.jpg']]],
                         ]],
-                        '_flexform' => ['sDEF' => ['settings.aspectRatio' => '21x9', 'settings.fade' => '1', 'settings.autoplay' => '1', 'settings.borderRadius' => 'large', 'settings.style' => 'shadow']],
+                        '_flexform' => ['sDEF' => ['settings.aspectRatio' => '21x9', 'settings.fade' => '1', 'settings.autoplay' => '1', 'settings.style' => 'shadow']],
                     ],
                     [
                         'CType' => 'conn_swiper_thumbs_slider',
@@ -567,7 +567,7 @@ $pages = [[
                             static fn(array $item) => ['title' => $item[1], 'caption' => '<p>' . $item[2] . '</p>', '_files' => ['image' => [$item[0]]]],
                             [['card-violet.jpg', 'Violet', 'Deep purple tones.'], ['card-emerald.jpg', 'Emerald', 'Fresh greens.'], ['card-rose.jpg', 'Rose', 'Warm pinks.'], ['card-sky.jpg', 'Sky', 'Light blues.'], ['card-amber.jpg', 'Amber', 'Golden hues.'], ['card-teal.jpg', 'Teal', 'Calm cyan.']]
                         )],
-                        '_flexform' => ['sDEF' => ['settings.columns' => '3', 'settings.gap' => 'medium'], 'border' => ['settings.borderStyle' => 'none', 'settings.borderRadius' => 'large']],
+                        '_flexform' => ['sDEF' => ['settings.columns' => '3', 'settings.gap' => 'medium'], 'border' => ['settings.borderStyle' => 'none']],
                     ],
                     [
                         'CType' => 'conn_flip_carousel',
@@ -823,7 +823,7 @@ return [
         // "base" is set by the installer: "/" on a fresh installation, this value next to existing sites.
         'baseWithOtherSites' => '/t3kit-demo/',
         'websiteTitle' => 't3kit Demo',
-        // Theme = second Set, from conn/t3kit-base: conn/t3kit-theme-{indigo|forest|sunset|midnight}
+        // Theme = second Set, from conn/t3kit-base: conn/t3kit-theme-{indigo|forest|sunset|midnight|flat}
         'dependencies' => ['conn/t3kit-demosite', 'conn/t3kit-theme-indigo'],
         'languages' => [[
             'title' => 'English',

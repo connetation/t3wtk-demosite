@@ -57,6 +57,7 @@ navigation and footer layout, see its README). The demo site uses two Sets:
 | `conn/t3kit-theme-forest` | Emerald / teal | Off-canvas panel from the right | Centered, dark green |
 | `conn/t3kit-theme-sunset` | Rose / orange, warm paper | Horizontal, centered, list dropdowns | Minimal, one row |
 | `conn/t3kit-theme-midnight` | Cyan / violet, dark navbar + footer | Off-canvas panel from the left | 3 columns, dark |
+| `conn/t3kit-theme-flat` | Zinc / blue, flat: square corners, no shadows | Horizontal, right aligned, list dropdowns | 4 columns, dark |
 
 To switch, replace the theme in `config/sites/t3kit-demosite/config.yaml` (or in
 Site Management → Sites → Sets) and flush the caches:
@@ -73,9 +74,10 @@ dependencies:
   brings `conn/t3kit-base`, so the content elements would have no rendering
   definition.
 - **Without a theme:** the site uses the conn/t3kit-base defaults.
-- **`conn/t3kit-demosite` sets no theme keys** (only `themeToggle.enabled`),
-  so every theme applies fully. The demo has no logo; the header and footer
-  show the site title, which works on every theme.
+- **`conn/t3kit-demosite` sets no theme keys** (only `themeToggle.enabled`
+  and the `branding.*` favicons), so every theme applies fully. The demo has
+  no logo; the header and footer show the site title, which works on every
+  theme.
 
 **Keep theme values out of `config/sites/t3kit-demosite/settings.yaml`**
 unless you mean to override the theme. Site settings override every Set, and
@@ -142,11 +144,20 @@ ones with:
 ddev exec packages/t3kit-demosite/Build/generate-images.sh
 ```
 
+The favicons in `Resources/Public/Icons/Favicon/` (SVG with dark mode, ICO,
+apple-touch-icon and the 192/512 manifest icons) show the "T" mark of the demo
+logo. The Set wires them up via the `branding.*` settings; regenerate them with:
+
+```bash
+ddev exec packages/t3kit-demosite/Build/generate-favicons.sh
+```
+
 ## Structure
 
 ```
 conn/t3kit-demosite/                   # ext key: conn_t3kit_demosite
 ├── Build/generate-images.sh           # Regenerates the demo images (ImageMagick)
+├── Build/generate-favicons.sh         # Regenerates the favicons (ImageMagick)
 ├── Classes/
 │   ├── Command/InstallDemoSiteCommand.php                 # t3kit:demosite:install
 │   ├── EventListener/InstallDemoSiteOnPackageInitialization.php
@@ -155,5 +166,6 @@ conn/t3kit-demosite/                   # ext key: conn_t3kit_demosite
 │   ├── DemoSite/Definition.php        # The demo: pages, content, site config, settings
 │   └── Sets/
 │       └── Demosite/                  # conn/t3kit-demosite: dependencies, form redirect override
-└── Initialisation/Files/images/       # Copied to fileadmin/conn_t3kit_demosite/
+├── Initialisation/Files/images/       # Copied to fileadmin/conn_t3kit_demosite/
+└── Resources/Public/Icons/Favicon/    # Demo favicons (branding.* settings)
 ```
