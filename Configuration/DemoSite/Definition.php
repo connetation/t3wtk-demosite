@@ -604,7 +604,7 @@ $pages = [[
                             ['title' => 'Details', 'body' => $p('Choose between classic tabs and pills, optionally justified and with a fade animation.')],
                             ['title' => 'Specs', 'body' => $ul('Bootstrap 5 tabs', 'Keyboard accessible', 'Up to 200 tabs per element')],
                         ]],
-                        '_flexform' => ['sDEF' => ['settings.style' => 'pills', 'settings.fade' => '1', 'settings.justified' => '1']],
+                        '_flexform' => ['sDEF' => ['settings.style' => 'connected', 'settings.fade' => '1', 'settings.justified' => '1']],
                     ],
                     array_replace($faq, ['header' => 'Accordion', 'header_position' => '', 'subheader' => '', 'tx_conn_t3kit_base_subheader_eyebrow' => 0, '_flexform' => ['sDEF' => ['settings.style' => 'default']]]),
                     [

@@ -2,7 +2,7 @@
 <f:if condition="{themeSwitcher.themes -> f:count()} > 1">
     <f:comment>Collapsed by default: <details> opens/closes without JavaScript; theme-switcher.js adds
         Escape, click outside and keeping it open across a theme switch.</f:comment>
-    <details class="conn-demo-themes" style="--conn-demo-current: {themeSwitcher.current.accent}">
+    <details class="conn-demo-themes" data-position="{f:if(condition: position, then: position, else: 'right-bottom')}" style="--conn-demo-current: {themeSwitcher.current.accent}">
         <summary class="conn-demo-themes__toggle" title="Preview theme">
             <svg class="conn-demo-themes__icon" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"
                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

@@ -5,10 +5,30 @@ categories:
 settings:
   demosite.themeSwitcher.enabled:
     label: 'Theme preview switcher'
-    description: 'Shows a small "Themes" button at the left edge that expands to let visitors preview every installed conn/t3kit-theme-* set. The site must have one theme set selected; the choice is stored per visitor in a cookie.'
+    description: 'Shows a small "Themes" button at a screen edge (see "Theme preview switcher – position") that expands to let visitors preview every installed conn/t3kit-theme-* set. The site must have one theme set selected; the choice is stored per visitor in a cookie.'
     type: bool
     default: true
     category: conn.demosite
+
+  demosite.themeSwitcher.position:
+    label: 'Theme preview switcher – position'
+    description: 'Screen edge the "Themes" button is docked to (first word) and where along that edge it sits (second word). The panel opens away from that edge.'
+    type: string
+    default: right-bottom
+    category: conn.demosite
+    enum:
+      right-top: 'Right edge – top'
+      right-middle: 'Right edge – middle'
+      right-bottom: 'Right edge – bottom'
+      left-top: 'Left edge – top'
+      left-middle: 'Left edge – middle'
+      left-bottom: 'Left edge – bottom'
+      top-left: 'Top edge – left'
+      top-center: 'Top edge – center'
+      top-right: 'Top edge – right'
+      bottom-left: 'Bottom edge – left'
+      bottom-center: 'Bottom edge – center'
+      bottom-right: 'Bottom edge – right'
 
   demosite.logo.onLight:
     label: 'Demo logo – for light backgrounds'

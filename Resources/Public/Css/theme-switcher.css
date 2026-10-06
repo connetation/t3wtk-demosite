@@ -1,10 +1,18 @@
-/* Theme preview switcher (demo site only): fixed to the right edge, low on the
-   screen (centered at 85% of the viewport height; docked to the bottom on small
-   screens). A vertical "Themes" tab that opens a panel to its left with one
-   button per theme, stacked. Uses the active theme's tokens (radius follows
-   theme.radius). */
+/* Theme preview switcher (demo site only): a "Themes" tab docked to a screen
+   edge that opens a panel away from that edge with one button per theme,
+   stacked. Uses the active theme's tokens (radius follows theme.radius).
+   Placement comes from data-position = "<edge>-<slot>" (setting
+   demosite.themeSwitcher.position); the defaults below are "right-bottom":
+   right edge, centered at 85% of the viewport height (docked to the bottom on
+   small screens). Slots along an edge sit at 15% / 50% / 85%. */
 .conn-demo-themes {
     --conn-demo-radius: var(--conn-radius, 0.75rem);
+    /* Which corners are rounded (1) or square (0, against the screen edge): TL TR BR BL */
+    --conn-demo-tl: 1;
+    --conn-demo-tr: 0;
+    --conn-demo-br: 0;
+    --conn-demo-bl: 1;
+    --conn-demo-panel-from: translateX(0.5rem);
     position: fixed;
     top: 85%;
     right: 0;
@@ -13,10 +21,62 @@
     background: var(--conn-surface, #fff);
     border: 1px solid var(--conn-border, rgba(0, 0, 0, 0.1));
     border-right: 0;
-    border-radius: var(--conn-demo-radius) 0 0 var(--conn-demo-radius);
+    border-radius:
+        calc(var(--conn-demo-radius) * var(--conn-demo-tl))
+        calc(var(--conn-demo-radius) * var(--conn-demo-tr))
+        calc(var(--conn-demo-radius) * var(--conn-demo-br))
+        calc(var(--conn-demo-radius) * var(--conn-demo-bl));
     box-shadow: 0 4px 16px rgb(0 0 0 / 12%);
     font-size: 0.8125rem;
 }
+
+/* ── Edge ── */
+.conn-demo-themes[data-position^="left-"] {
+    --conn-demo-tl: 0;
+    --conn-demo-tr: 1;
+    --conn-demo-br: 1;
+    --conn-demo-bl: 0;
+    --conn-demo-panel-from: translateX(-0.5rem);
+    right: auto;
+    left: 0;
+    border-right: 1px solid var(--conn-border, rgba(0, 0, 0, 0.1));
+    border-left: 0;
+}
+
+.conn-demo-themes[data-position^="top-"],
+.conn-demo-themes[data-position^="bottom-"] {
+    right: auto;
+    transform: translateX(-50%);
+    border-right: 1px solid var(--conn-border, rgba(0, 0, 0, 0.1));
+}
+
+.conn-demo-themes[data-position^="top-"] {
+    --conn-demo-tl: 0;
+    --conn-demo-tr: 0;
+    --conn-demo-br: 1;
+    --conn-demo-bl: 1;
+    --conn-demo-panel-from: translateY(-0.5rem);
+    top: 0;
+    border-top: 0;
+}
+
+.conn-demo-themes[data-position^="bottom-"] {
+    --conn-demo-tl: 1;
+    --conn-demo-tr: 1;
+    --conn-demo-br: 0;
+    --conn-demo-bl: 0;
+    --conn-demo-panel-from: translateY(0.5rem);
+    top: auto;
+    bottom: 0;
+    border-bottom: 0;
+}
+
+/* ── Slot along the edge ── */
+.conn-demo-themes[data-position$="-top"] { top: 15%; }
+.conn-demo-themes[data-position$="-middle"] { top: 50%; }
+.conn-demo-themes[data-position$="-left"] { left: 15%; }
+.conn-demo-themes[data-position$="-center"] { left: 50%; }
+.conn-demo-themes[data-position$="-right"] { left: 85%; }
 
 /* ── Toggle: narrow edge tile — icon, short horizontal caption, count ── */
 .conn-demo-themes__toggle {
@@ -29,7 +89,12 @@
     padding: 0.65rem 0.5rem 0.6rem;
     /* Not "inherit": in Chrome the <summary> sits in the <details> shadow slot, so it
        would inherit the slot's square corners. Inner radius = outer minus the border. */
-    border-radius: max(0px, calc(var(--conn-demo-radius) - 1px)) 0 0 max(0px, calc(var(--conn-demo-radius) - 1px));
+    --conn-demo-inner-radius: max(0px, calc(var(--conn-demo-radius) - 1px));
+    border-radius:
+        calc(var(--conn-demo-inner-radius) * var(--conn-demo-tl))
+        calc(var(--conn-demo-inner-radius) * var(--conn-demo-tr))
+        calc(var(--conn-demo-inner-radius) * var(--conn-demo-br))
+        calc(var(--conn-demo-inner-radius) * var(--conn-demo-bl));
     color: var(--conn-text, inherit);
     font-weight: 600;
     line-height: 1;
@@ -86,7 +151,11 @@
     content: "";
     position: absolute;
     inset: -1px;
-    border-radius: var(--conn-demo-radius) 0 0 var(--conn-demo-radius);
+    border-radius:
+        calc(var(--conn-demo-radius) * var(--conn-demo-tl))
+        calc(var(--conn-demo-radius) * var(--conn-demo-tr))
+        calc(var(--conn-demo-radius) * var(--conn-demo-br))
+        calc(var(--conn-demo-radius) * var(--conn-demo-bl));
     pointer-events: none;
     animation: conn-demo-themes-pulse 3.5s ease-out 1.5s infinite;
 }
@@ -108,8 +177,8 @@
     24% { transform: rotate(4deg); }
 }
 
-/* ── Panel: opens to the left of the tab, bottom-aligned with it so it grows
-   upwards (the tab sits low on the screen) ── */
+/* ── Panel: opens away from the docked edge. Default (right edge, low on the
+   screen): to the left of the tab, bottom-aligned so it grows upwards ── */
 .conn-demo-themes__panel {
     position: absolute;
     right: calc(100% + 0.5rem);
@@ -124,12 +193,45 @@
     overscroll-behavior: contain;
 }
 
+[data-position^="left-"] .conn-demo-themes__panel {
+    right: auto;
+    left: calc(100% + 0.5rem);
+}
+
+/* Left/right edge: high on the screen grows downwards, middle grows both ways */
+[data-position$="-top"] .conn-demo-themes__panel {
+    top: 0;
+    bottom: auto;
+}
+
+[data-position$="-middle"] .conn-demo-themes__panel {
+    top: 50%;
+    bottom: auto;
+    translate: 0 -50%;
+}
+
+/* Top/bottom edge: below/above the tab, aligned with it towards the screen center */
+[data-position^="top-"] .conn-demo-themes__panel,
+[data-position^="bottom-"] .conn-demo-themes__panel {
+    inset: auto;
+}
+
+[data-position^="top-"] .conn-demo-themes__panel { top: calc(100% + 0.5rem); }
+[data-position^="bottom-"] .conn-demo-themes__panel { bottom: calc(100% + 0.5rem); }
+[data-position$="-left"] .conn-demo-themes__panel { left: 0; }
+[data-position$="-right"] .conn-demo-themes__panel { right: 0; }
+
+[data-position$="-center"] .conn-demo-themes__panel {
+    left: 50%;
+    translate: -50% 0;
+}
+
 .conn-demo-themes[open]:not(.is-restored) .conn-demo-themes__panel {
     animation: conn-demo-themes-open 0.2s ease-out;
 }
 
 @keyframes conn-demo-themes-open {
-    from { opacity: 0; transform: translateX(0.5rem); }
+    from { opacity: 0; transform: var(--conn-demo-panel-from); }
     to { opacity: 1; transform: none; }
 }
 
@@ -181,10 +283,12 @@
     background: var(--conn-demo-swatch, currentColor);
 }
 
-/* Small screens: compact tab (icon + count, no caption) docked to the bottom;
-   the panel keeps the full theme names but may not run past the left edge. */
+/* Small screens: compact tab (icon + count, no caption); low on a left/right edge
+   it is docked to the bottom. The panel keeps the full theme names but may not
+   run past the opposite edge. */
 @media (max-width: 767.98px) {
-    .conn-demo-themes {
+    .conn-demo-themes[data-position="right-bottom"],
+    .conn-demo-themes[data-position="left-bottom"] {
         top: auto;
         bottom: 1rem;
         transform: none;

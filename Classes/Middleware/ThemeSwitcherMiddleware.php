@@ -61,11 +61,13 @@ final readonly class ThemeSwitcherMiddleware implements MiddlewareInterface
             $theme = $this->themeRegistry->getTheme((string)($request->getCookieParams()[self::COOKIE] ?? '')) ?? $configuredTheme;
         }
 
-        return $handler->handle(
-            $request
-                ->withAttribute('site', $this->createSite($site, $configuredTheme, $theme))
-                ->withAttribute(self::ATTRIBUTE, $theme->identifier)
-        );
+        $request = $request->withAttribute('site', $this->createSite($site, $configuredTheme, $theme));
+        if ($switcherEnabled) {
+            // Only set while the switcher is active: ThemeSwitcherProcessor lists no themes without it.
+            $request = $request->withAttribute(self::ATTRIBUTE, $theme->identifier);
+        }
+
+        return $handler->handle($request);
     }
 
     /** The site as it renders with $to instead of its configured theme, with the demo logos filled in. */

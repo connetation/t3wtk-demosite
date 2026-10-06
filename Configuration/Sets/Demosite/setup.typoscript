@@ -15,12 +15,16 @@ plugin.tx_form.settings.formDefinitionOverrides.contact {
 # ─────────────────────────────────────────────
 # Theme preview banner (Middleware/ThemeSwitcherMiddleware.php)
 # ─────────────────────────────────────────────
-page.5 = FLUIDTEMPLATE
-page.5 {
-    if.isTrue.data = sitesettings:demosite.themeSwitcher.enabled
+# FLUIDTEMPLATE has no "if" property — the COA around it carries the condition.
+page.5 = COA
+page.5.if.isTrue.data = sitesettings:demosite.themeSwitcher.enabled
+page.5.10 = FLUIDTEMPLATE
+page.5.10 {
     templateName = Banner
     templateRootPaths.10 = EXT:conn_t3kit_demosite/Resources/Private/Templates/ThemeSwitcher/
     dataProcessing.10 = conn-demosite-theme-switcher
+    variables.position = TEXT
+    variables.position.data = sitesettings:demosite.themeSwitcher.position
 }
 
 page.includeCSS.connDemoThemes = EXT:conn_t3kit_demosite/Resources/Public/Css/theme-switcher.css
