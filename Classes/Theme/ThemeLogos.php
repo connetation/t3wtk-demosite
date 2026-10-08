@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitDemosite\Theme;
+namespace Connetation\T3wtkDemosite\Theme;
 
 use TYPO3\CMS\Core\Settings\Settings;
 use TYPO3\CMS\Core\Site\Entity\SiteSettings;
@@ -15,7 +15,7 @@ use TYPO3\CMS\Core\Site\Entity\SiteSettings;
  */
 final class ThemeLogos
 {
-    // conn_t3kit_base's built-in backgrounds (Scss/theme/_light.scss, _dark.scss)
+    // conn_t3wtk_base's built-in backgrounds (Scss/theme/_light.scss, _dark.scss)
     private const DEFAULT_BACKGROUND = ['light' => '#ffffff', 'dark' => '#12122a'];
 
     private const SLOTS = [

@@ -1,10 +1,10 @@
 # ─────────────────────────────────────────────
-# t3kit Demo Site
-# conn/t3kit-sitepackage (and with it conn/t3kit-base + conn/t3kit-elements)
+# TYPO3 Web Toolkit Demo Site
+# connetation/t3wtk-sitepackage (and with it connetation/t3wtk-base + connetation/t3wtk-elements)
 # is loaded via the Set dependencies in config.yaml.
 # ─────────────────────────────────────────────
 
-# The shared contact form (EXT:conn_t3kit_sitepackage/Resources/Private/Forms/Contact.form.yaml)
+# The shared contact form (EXT:conn_t3wtk_sitepackage/Resources/Private/Forms/Contact.form.yaml)
 # redirects to page uid 1 after submit — on the demo site that is not the demo root page.
 # finishers.1 = Redirect.
 plugin.tx_form.settings.formDefinitionOverrides.contact {
@@ -21,17 +21,17 @@ page.5.if.isTrue.data = sitesettings:demosite.themeSwitcher.enabled
 page.5.10 = FLUIDTEMPLATE
 page.5.10 {
     templateName = Banner
-    templateRootPaths.10 = EXT:conn_t3kit_demosite/Resources/Private/Templates/ThemeSwitcher/
+    templateRootPaths.10 = EXT:conn_t3wtk_demosite/Resources/Private/Templates/ThemeSwitcher/
     dataProcessing.10 = conn-demosite-theme-switcher
     variables.position = TEXT
     variables.position.data = sitesettings:demosite.themeSwitcher.position
 }
 
-page.includeCSS.connDemoThemes = EXT:conn_t3kit_demosite/Resources/Public/Css/theme-switcher.css
-page.includeJSFooter.connDemoThemes = EXT:conn_t3kit_demosite/Resources/Public/JavaScript/theme-switcher.js
+page.includeCSS.connDemoThemes = EXT:conn_t3wtk_demosite/Resources/Public/Css/theme-switcher.css
+page.includeJSFooter.connDemoThemes = EXT:conn_t3wtk_demosite/Resources/Public/JavaScript/theme-switcher.js
 page.includeJSFooter.connDemoThemes.defer = 1
 
-# conn_t3kit_base reads these settings as TypoScript constants, which the core
+# conn_t3wtk_base reads these settings as TypoScript constants, which the core
 # caches without their values — read them at render time from the (possibly
 # switched) site instead, so each theme gets its own.
 page.bodyTagCObject.20.if.isTrue >
@@ -53,4 +53,4 @@ page.headerData.21 {
 }
 
 # Page template override: Default without the container's pb-5.
-page.10.templateRootPaths.20 = EXT:conn_t3kit_demosite/Resources/Private/Templates/Page/
+page.10.templateRootPaths.20 = EXT:conn_t3wtk_demosite/Resources/Private/Templates/Page/

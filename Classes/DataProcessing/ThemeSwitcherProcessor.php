@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitDemosite\DataProcessing;
+namespace Connetation\T3wtkDemosite\DataProcessing;
 
-use Connetation\T3kitDemosite\Middleware\ThemeSwitcherMiddleware;
-use Connetation\T3kitDemosite\Theme\ThemeRegistry;
+use Connetation\T3wtkDemosite\Middleware\ThemeSwitcherMiddleware;
+use Connetation\T3wtkDemosite\Theme\ThemeRegistry;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
 /**
  * Provides the theme list for the switcher (Templates/ThemeSwitcher/Banner.html):
- * one entry per conn/t3kit-theme-* set, each linking to the current URL plus
+ * one entry per connetation/t3wtk-theme-* set, each linking to the current URL plus
  * ?t3kit-theme=<identifier> (handled by ThemeSwitcherMiddleware).
  */
 final readonly class ThemeSwitcherProcessor implements DataProcessorInterface

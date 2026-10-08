@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitDemosite\Middleware;
+namespace Connetation\T3wtkDemosite\Middleware;
 
-use Connetation\T3kitDemosite\Theme\Theme;
-use Connetation\T3kitDemosite\Theme\ThemeLogos;
-use Connetation\T3kitDemosite\Theme\ThemeRegistry;
+use Connetation\T3wtkDemosite\Theme\Theme;
+use Connetation\T3wtkDemosite\Theme\ThemeLogos;
+use Connetation\T3wtkDemosite\Theme\ThemeRegistry;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -18,7 +18,7 @@ use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\SiteSettingsFactory;
 
 /**
- * Lets visitors of the demo site preview every conn/t3kit-theme-* set.
+ * Lets visitors of the demo site preview every connetation/t3wtk-theme-* set.
  *
  * ?t3kit-theme=<identifier> stores the choice in a cookie and redirects to the
  * same URL without the parameter. On every request the chosen theme set then

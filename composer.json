@@ -1,25 +1,28 @@
 {
-    "name": "conn/t3kit-demosite",
-    "description": "Connetation t3kit demo site – installs a complete demo page tree, site configuration and content built with conn/t3kit-base and conn/t3kit-elements (TYPO3 LTS 14)",
+    "name": "connetation/t3wtk-demosite",
+    "description": "Connetation TYPO3 Web Toolkit demo site – installs a complete demo page tree, site configuration and content built with connetation/t3wtk-base and connetation/t3wtk-elements (TYPO3 LTS 14)",
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
     "require": {
         "typo3/cms-core": "^14.0",
         "typo3/cms-form": "^14.0",
-        "conn/t3kit-base": "^2.0.0",
-        "conn/t3kit-elements": "^2.0.0"
+        "connetation/t3wtk-base": "^3.0.8",
+        "connetation/t3wtk-elements": "^3.0.8"
+    },
+    "replace": {
+        "conn/t3kit-demosite": "self.version"
     },
     "suggest": {
-        "conn/t3kit-sitepackage": "Required at runtime (Site Set dependency). Installed by the project itself, e.g. as a local path package in packages/ via t3kit-quickstart-shell"
+        "connetation/t3wtk-sitepackage": "Required at runtime (Site Set dependency). Installed by the project itself, e.g. as a local path package in packages/"
     },
     "autoload": {
         "psr-4": {
-            "Connetation\\T3kitDemosite\\": "Classes/"
+            "Connetation\\T3wtkDemosite\\": "Classes/"
         }
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "conn_t3kit_demosite"
+            "extension-key": "conn_t3wtk_demosite"
         }
     }
 }

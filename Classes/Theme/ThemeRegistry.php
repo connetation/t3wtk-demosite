@@ -2,21 +2,21 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitDemosite\Theme;
+namespace Connetation\T3wtkDemosite\Theme;
 
 use TYPO3\CMS\Core\Site\Set\SetDefinition;
 use TYPO3\CMS\Core\Site\Set\SetRegistry;
 
 /**
  * Discovers every installed theme set by name: any site set called
- * conn/t3kit-theme-<identifier> is a theme, no registration needed.
- * Additionally offers "default": conn/t3kit-base's own settings, no theme set.
+ * connetation/t3wtk-theme-<identifier> is a theme, no registration needed.
+ * Additionally offers "default": connetation/t3wtk-base's own settings, no theme set.
  */
 final readonly class ThemeRegistry
 {
-    public const SET_PREFIX = 'conn/t3kit-theme-';
+    public const SET_PREFIX = 'connetation/t3wtk-theme-';
     public const DEFAULT_IDENTIFIER = 'default';
-    // conn/t3kit-base's built-in accent ($conn-accent in _variables.scss)
+    // connetation/t3wtk-base's built-in accent ($conn-accent in _variables.scss)
     private const DEFAULT_ACCENT = '#6366f1';
 
     public function __construct(

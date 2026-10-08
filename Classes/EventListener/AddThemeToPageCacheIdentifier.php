@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitDemosite\EventListener;
+namespace Connetation\T3wtkDemosite\EventListener;
 
-use Connetation\T3kitDemosite\Middleware\ThemeSwitcherMiddleware;
+use Connetation\T3wtkDemosite\Middleware\ThemeSwitcherMiddleware;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Frontend\Event\BeforePageCacheIdentifierIsHashedEvent;
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitDemosite\Installer;
+namespace Connetation\T3wtkDemosite\Installer;
 
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Configuration\FlexForm\FlexFormTools;
@@ -35,10 +35,12 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class DemoSiteInstaller
 {
-    public const EXTENSION_KEY = 'conn_t3kit_demosite';
+    public const EXTENSION_KEY = 'conn_t3wtk_demosite';
     public const SITE_IDENTIFIER = 't3kit-demosite';
     private const REGISTRY_NAMESPACE = 'extensionDataImport';
     private const REGISTRY_KEY = self::EXTENSION_KEY . ':demoSiteInstalled';
+    /** Same flag under the former extension key (conn_t3kit_demosite, before the t3wtk rename). */
+    private const LEGACY_REGISTRY_KEY = 'conn_t3kit_demosite:demoSiteInstalled';
     private const FILE_FOLDER = self::EXTENSION_KEY . '/images/';
 
     /** @var array<string, int> page key => uid */
@@ -57,7 +59,8 @@ final class DemoSiteInstaller
 
     public function isInstalled(): bool
     {
-        return (bool)$this->registry->get(self::REGISTRY_NAMESPACE, self::REGISTRY_KEY);
+        return (bool)$this->registry->get(self::REGISTRY_NAMESPACE, self::REGISTRY_KEY)
+            || (bool)$this->registry->get(self::REGISTRY_NAMESPACE, self::LEGACY_REGISTRY_KEY);
     }
 
     /**
@@ -87,7 +90,7 @@ final class DemoSiteInstaller
         }
 
         $this->registry->set(self::REGISTRY_NAMESPACE, self::REGISTRY_KEY, 1);
-        $this->logger->info('t3kit demo site installed', ['rootPageUid' => $rootPageUid]);
+        $this->logger->info('TYPO3 Web Toolkit demo site installed', ['rootPageUid' => $rootPageUid]);
         return $rootPageUid;
     }
 
@@ -236,8 +239,8 @@ final class DemoSiteInstaller
     }
 
     /**
-     * The flex field of a CType: t3kit elements keep their settings in own columns
-     * (e.g. tx_conn_t3kit_elements_logo_wall_settings), core plugins use pi_flexform.
+     * The flex field of a CType: t3wtk elements keep their settings in own columns
+     * (e.g. tx_conn_t3wtk_elements_logo_wall_settings), core plugins use pi_flexform.
      */
     private function getFlexFormField(string $table, string $cType): string
     {

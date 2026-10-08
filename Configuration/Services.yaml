@@ -4,9 +4,9 @@ services:
     autoconfigure: true
     public: false
 
-  Connetation\T3kitDemosite\:
+  Connetation\T3wtkDemosite\:
     resource: '../Classes/*'
 
-  Connetation\T3kitDemosite\DataProcessing\ThemeSwitcherProcessor:
+  Connetation\T3wtkDemosite\DataProcessing\ThemeSwitcherProcessor:
     tags:
       - { name: 'data.processor', identifier: 'conn-demosite-theme-switcher' }

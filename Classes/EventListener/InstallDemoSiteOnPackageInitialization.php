@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitDemosite\EventListener;
+namespace Connetation\T3wtkDemosite\EventListener;
 
-use Connetation\T3kitDemosite\Installer\DemoSiteInstaller;
+use Connetation\T3wtkDemosite\Installer\DemoSiteInstaller;
 use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Package\Event\PackageInitializationEvent;
@@ -13,7 +13,7 @@ use TYPO3\CMS\Core\Package\Initialization\ImportExtensionDataOnPackageInitializa
 /**
  * Installs the demo site the first time this extension is set up (`typo3 extension:setup`,
  * TYPO3 installation, or activation in the Extension Manager) — like EXT:introduction.
- * Runs after the core copied Initialisation/Files to fileadmin/conn_t3kit_demosite/.
+ * Runs after the core copied Initialisation/Files to fileadmin/conn_t3wtk_demosite/.
  */
 final readonly class InstallDemoSiteOnPackageInitialization
 {
@@ -33,7 +33,7 @@ final readonly class InstallDemoSiteOnPackageInitialization
             $event->addStorageEntry(__CLASS__, ['rootPageUid' => $rootPageUid]);
         } catch (\RuntimeException $e) {
             // Never break extension:setup / the installation because of demo content.
-            $this->logger->warning('t3kit demo site was not installed: ' . $e->getMessage(), ['exception' => $e]);
+            $this->logger->warning('TYPO3 Web Toolkit demo site was not installed: ' . $e->getMessage(), ['exception' => $e]);
         }
     }
 }

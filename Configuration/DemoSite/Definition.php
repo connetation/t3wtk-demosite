@@ -3,10 +3,10 @@
 declare(strict_types=1);
 
 /**
- * t3kit demo site: page tree, content, site configuration and site settings.
- * Read by Connetation\T3kitDemosite\Installer\DemoSiteInstaller — see its docblock for the format.
+ * t3wtk demo site: page tree, content, site configuration and site settings.
+ * Read by Connetation\T3wtkDemosite\Installer\DemoSiteInstaller — see its docblock for the format.
  *
- * Images live in Initialisation/Files/images/ (copied to fileadmin/conn_t3kit_demosite/images/
+ * Images live in Initialisation/Files/images/ (copied to fileadmin/conn_t3wtk_demosite/images/
  * on extension setup) and are referenced by file name only.
  */
 
@@ -29,9 +29,9 @@ $intro = static fn(string $eyebrow, string $header, string $text, string $layout
     'header_layout' => $layout,
     'header_position' => $position,
     'subheader' => $eyebrow,
-    'tx_conn_t3kit_base_subheader_eyebrow' => 1,
+    'tx_conn_t3wtk_base_subheader_eyebrow' => 1,
     'bodytext' => '<p class="lead' . ($position === 'center' ? ' text-center' : '') . '">' . $text . '</p>',
-    'tx_conn_t3kit_elements_text_animation' => 'words',
+    'tx_conn_t3wtk_elements_text_animation' => 'words',
     'space_after_class' => 'medium',
 ];
 
@@ -42,7 +42,7 @@ $section = static fn(string $eyebrow, string $header, string $text = ''): array 
     'header_layout' => '2',
     'header_position' => 'center',
     'subheader' => $eyebrow,
-    'tx_conn_t3kit_base_subheader_eyebrow' => 1,
+    'tx_conn_t3wtk_base_subheader_eyebrow' => 1,
     'space_before_class' => 'large',
     'space_after_class' => 'small',
 ], $text !== '' ? ['CType' => 'text', 'bodytext' => '<p class="text-center">' . $text . '</p>'] : []);
@@ -58,32 +58,32 @@ $section = static fn(string $eyebrow, string $header, string $text = ''): array 
  */
 $darkBand = static fn(string $color = '#111827'): array => [
     'frame_class' => 'none',
-    'tx_conn_t3kit_base_bg_type' => 'color',
-    'tx_conn_t3kit_base_bg_color' => $color,
-    'tx_conn_t3kit_base_bg_text_color' => '#f8fafc',
-    'tx_conn_t3kit_base_bg_padding_before' => 'extra-large',
-    'tx_conn_t3kit_base_bg_padding_after' => 'extra-large',
+    'tx_conn_t3wtk_base_bg_type' => 'color',
+    'tx_conn_t3wtk_base_bg_color' => $color,
+    'tx_conn_t3wtk_base_bg_text_color' => '#f8fafc',
+    'tx_conn_t3wtk_base_bg_padding_before' => 'extra-large',
+    'tx_conn_t3wtk_base_bg_padding_after' => 'extra-large',
     'space_before_class' => 'extra-large',
 ];
 
 /** Parallax image band — for elements that bring their own readable surfaces (cards, quotes). */
 $imageBand = static fn(string $image): array => [
     'frame_class' => 'none',
-    'tx_conn_t3kit_base_bg_type' => 'image',
-    'tx_conn_t3kit_base_bg_mode' => 'parallax',
-    'tx_conn_t3kit_base_bg_padding_before' => 'extra-large',
-    'tx_conn_t3kit_base_bg_padding_after' => 'extra-large',
+    'tx_conn_t3wtk_base_bg_type' => 'image',
+    'tx_conn_t3wtk_base_bg_mode' => 'parallax',
+    'tx_conn_t3wtk_base_bg_padding_before' => 'extra-large',
+    'tx_conn_t3wtk_base_bg_padding_after' => 'extra-large',
     'space_before_class' => 'extra-large',
-    '_files' => ['tx_conn_t3kit_base_bg_image' => [$image]],
+    '_files' => ['tx_conn_t3wtk_base_bg_image' => [$image]],
 ];
 
 /** Soft tinted band. */
 $softBand = static fn(string $color = '#8080801a'): array => [
     'frame_class' => 'none',
-    'tx_conn_t3kit_base_bg_type' => 'color',
-    'tx_conn_t3kit_base_bg_color' => $color,
-    'tx_conn_t3kit_base_bg_padding_before' => 'large',
-    'tx_conn_t3kit_base_bg_padding_after' => 'large',
+    'tx_conn_t3wtk_base_bg_type' => 'color',
+    'tx_conn_t3wtk_base_bg_color' => $color,
+    'tx_conn_t3wtk_base_bg_padding_before' => 'large',
+    'tx_conn_t3wtk_base_bg_padding_after' => 'large',
     'space_before_class' => 'large',
 ];
 
@@ -125,11 +125,11 @@ $textIcon = static fn(string $icon, string $header, string $text, string $shape 
     'header' => $header,
     'header_layout' => '3',
     'bodytext' => '<p>' . $text . '</p>',
-    'tx_conn_t3kit_elements_text_icon_library' => 'bootstrap-icons',
-    'tx_conn_t3kit_elements_text_icon_name' => $icon,
-    'tx_conn_t3kit_elements_text_icon_position' => $position,
-    'tx_conn_t3kit_elements_text_icon_shape' => $shape,
-    'tx_conn_t3kit_elements_text_icon_size' => 'large',
+    'tx_conn_t3wtk_elements_text_icon_library' => 'bootstrap-icons',
+    'tx_conn_t3wtk_elements_text_icon_name' => $icon,
+    'tx_conn_t3wtk_elements_text_icon_position' => $position,
+    'tx_conn_t3wtk_elements_text_icon_shape' => $shape,
+    'tx_conn_t3wtk_elements_text_icon_size' => 'large',
 ];
 
 /** Page with card data for the Subpage Cards element. */
@@ -137,8 +137,8 @@ $showcasePage = static fn(string $key, string $title, string $teaser, string $im
     '_key' => $key,
     'title' => $title,
     'abstract' => $teaser,
-    'tx_conn_t3kit_elements_card_teaser' => '<p>' . $teaser . '</p>',
-    '_files' => ['tx_conn_t3kit_elements_card_media' => [$image]],
+    'tx_conn_t3wtk_elements_card_teaser' => '<p>' . $teaser . '</p>',
+    '_files' => ['tx_conn_t3wtk_elements_card_media' => [$image]],
     '_content' => $content,
 ];
 
@@ -151,7 +151,7 @@ $stats = [
     'header' => 'Numbers that speak for themselves',
     'header_layout' => '2',
     'header_position' => 'center',
-    '_inline' => ['tx_conn_t3kit_elements_stats_items' => [
+    '_inline' => ['tx_conn_t3wtk_elements_stats_items' => [
         ['value' => '30', 'suffix' => '+', 'label' => 'Content elements', 'description' => 'Ready to use, no coding'],
         ['value' => '99', 'suffix' => '%', 'label' => 'Lighthouse score', 'description' => 'Performance out of the box'],
         ['value' => '3', 'label' => 'Icon libraries', 'description' => 'Bootstrap, Font Awesome, Ionicons'],
@@ -170,9 +170,9 @@ $testimonials = [
     'header_layout' => '2',
     'header_position' => 'center',
     'subheader' => 'Testimonials',
-    'tx_conn_t3kit_base_subheader_eyebrow' => 1,
+    'tx_conn_t3wtk_base_subheader_eyebrow' => 1,
     'space_before_class' => 'extra-large',
-    '_inline' => ['tx_conn_t3kit_elements_testimonials_items' => [
+    '_inline' => ['tx_conn_t3wtk_elements_testimonials_items' => [
         ['quote' => '<p>We relaunched three websites in the time it used to take us to build one. Editors love how easy the elements are to use.</p>', 'rating' => '5', 'author_name' => 'Anna Beispiel', 'author_role' => 'Head of Marketing, Beispiel AG', '_files' => ['image' => ['square-1.jpg']]],
         ['quote' => '<p>Clean code, great performance and a design system that just works. Our Lighthouse scores have never been better.</p>', 'rating' => '5', 'author_name' => 'Paul Probe', 'author_role' => 'Lead Developer, Probewerk', '_files' => ['image' => ['square-2.jpg']]],
         ['quote' => '<p>The dark mode and theme settings let us match our brand in minutes instead of days. Highly recommended.</p>', 'rating' => '5', 'author_name' => 'Petra Platzhalter', 'author_role' => 'Creative Director, Testhaus', '_files' => ['image' => ['square-3.jpg']]],
@@ -186,7 +186,7 @@ $logoWall = [
     'header_layout' => '5',
     'header_position' => 'center',
     'space_before_class' => 'large',
-    '_inline' => ['tx_conn_t3kit_elements_logo_wall_items' => array_map(
+    '_inline' => ['tx_conn_t3wtk_elements_logo_wall_items' => array_map(
         static fn(string $name, string $file) => ['alt' => $name, '_files' => ['image' => ['logo-' . $file . '.svg']]],
         ['Musterfirma', 'Beispiel AG', 'Probewerk', 'Testhaus', 'Vorlage & Co', 'Platzhalter'],
         ['musterfirma', 'beispiel', 'probewerk', 'testhaus', 'vorlage', 'platzhalter']
@@ -200,10 +200,10 @@ $faq = [
     'header_layout' => '2',
     'header_position' => 'center',
     'subheader' => 'FAQ',
-    'tx_conn_t3kit_base_subheader_eyebrow' => 1,
+    'tx_conn_t3wtk_base_subheader_eyebrow' => 1,
     'space_before_class' => 'extra-large',
-    '_inline' => ['tx_conn_t3kit_elements_accordion_items' => [
-        ['title' => 'What is t3kit?', 'body' => $p('t3kit is a set of TYPO3 extensions — base, elements and sitepackage — that gives you a complete, themeable website toolkit for TYPO3 LTS 14.')],
+    '_inline' => ['tx_conn_t3wtk_elements_accordion_items' => [
+        ['title' => 'What is t3wtk?', 'body' => $p('t3wtk is a set of TYPO3 extensions — base, elements and sitepackage — that gives you a complete, themeable website toolkit for TYPO3 LTS 14.')],
         ['title' => 'Do I need to write code to change the design?', 'body' => $p('No. Colors, logo, navigation, footer and dark mode are site settings. For deeper changes the sitepackage exposes every design token as a CSS custom property.')],
         ['title' => 'How do I get rid of this demo content?', 'body' => $p('Delete the demo page tree and the site configuration "t3kit-demosite" — or simply start editing: it is regular TYPO3 content.')],
         ['title' => 'Is the output accessible?', 'body' => $p('All elements use semantic markup, proper heading levels and keyboard-accessible interactive widgets built on Bootstrap 5.')],
@@ -219,31 +219,31 @@ $pages = [[
     'is_siteroot' => 1,
     'backend_layout' => 'pagets__conn_topcontent',
     'backend_layout_next_level' => 'pagets__conn_default',
-    'tx_conn_t3kit_base_hide_breadcrumb' => 1,
+    'tx_conn_t3wtk_base_hide_breadcrumb' => 1,
     '_content' => [
         // Top content: hero slider
         [
             'CType' => 'conn_swiper_hero_slider',
             'colPos' => 1,
-            'header' => 'Welcome to t3kit',
+            'header' => 'Welcome to t3wtk',
             'header_layout' => '100',
             'frame_class' => 'none',
-            'tx_conn_t3kit_base_content_width' => 'fullbleed',
+            'tx_conn_t3wtk_base_content_width' => 'fullbleed',
             // Directly below the navbar: no default spacer above the slider
             'space_before_class' => 'none',
-            '_inline' => ['tx_conn_t3kit_elements_hero_slider_items' => [
+            '_inline' => ['tx_conn_t3wtk_elements_hero_slider_items' => [
                 $slide('hero-indigo.jpg', 'Build beautiful TYPO3 websites', 'A complete toolkit of themeable content elements for TYPO3 LTS 14.', 'elements', 'Explore the elements', ['text_animation' => 'words', 'bg_animation' => 'zoom']),
                 $slide('hero-ocean.jpg', 'Design once, theme everywhere', 'Colors, logo, navigation and dark mode — all configurable as site settings.', 'features', 'See the features', ['text_animation' => 'lines', 'bg_animation' => 'zoom', 'text_pos_h' => 'center', 'text_pos_v' => 'center']),
                 $slide('hero-sunset.jpg', 'Fast, accessible, editor-friendly', 'Semantic markup, great Lighthouse scores and a backend editors enjoy.', 'contact', 'Get in touch', ['text_animation' => 'chars', 'bg_animation' => 'zoom']),
             ]],
             '_flexform' => ['sDEF' => ['settings.height' => '80', 'settings.effect' => 'fade', 'settings.autoplay' => '1', 'settings.autoplay_delay' => '5000']],
         ],
-        $intro('t3kit demo', 'Everything you need for a modern TYPO3 website', 'This demo site was created automatically when the t3kit demo extension was installed. Every page shows real content elements from conn/t3kit-elements — open the page module and see how they are configured.', '2'),
+        $intro('t3wtk demo', 'Everything you need for a modern TYPO3 website', 'This demo site was created automatically when the t3wtk demo extension was installed. Every page shows real content elements from connetation/t3wtk-elements — open the page module and see how they are configured.', '2'),
         [
             'CType' => 'conn_feature_grid',
-            'header' => 'Why t3kit?',
+            'header' => 'Why t3wtk?',
             'header_layout' => '100',
-            '_inline' => ['tx_conn_t3kit_elements_feature_grid_items' => [
+            '_inline' => ['tx_conn_t3wtk_elements_feature_grid_items' => [
                 $feature('grid-1x2', '30+ content elements', 'Sliders, galleries, cards, pricing tables, timelines and more — ready for editors.', 'elements'),
                 $feature('palette', 'Themeable', 'Every color, the logo, navbar and footer are site settings. Dark mode included.', 'features'),
                 $feature('lightning-charge', 'Fast by default', 'Lean CSS and JavaScript, lazy loading and responsive images out of the box.'),
@@ -265,7 +265,7 @@ $pages = [[
                     'header' => 'Built for editors, loved by developers',
                     'header_layout' => '2',
                     'subheader' => 'The toolkit',
-                    'tx_conn_t3kit_base_subheader_eyebrow' => 1,
+                    'tx_conn_t3wtk_base_subheader_eyebrow' => 1,
                     'bodytext' => $p('Editors get a clean page module with clearly named fields and live previews. Developers get well-structured Fluid templates, Site Sets and a sitepackage that keeps project code separate from the toolkit.')
                         . $ul('Site Sets for TYPO3 LTS 14', 'Light and dark theme per site', 'Container-based column layouts', 'Per-element backgrounds, spacing and animations')
                         . '<p>' . $button('Browse all elements', 'elements') . '</p>',
@@ -274,7 +274,7 @@ $pages = [[
                     'CType' => 'conn_card_stack',
                     'header' => 'Card stack',
                     'header_layout' => '100',
-                    '_inline' => ['tx_conn_t3kit_elements_card_stack_items' => [
+                    '_inline' => ['tx_conn_t3wtk_elements_card_stack_items' => [
                         ['title' => 'Plan', 'subtitle' => 'Step 1', 'body' => $p('Pick a layout and the elements you need.'), '_files' => ['image' => ['card-violet.jpg']]],
                         ['title' => 'Build', 'subtitle' => 'Step 2', 'body' => $p('Fill in content — no code required.'), '_files' => ['image' => ['card-teal.jpg']]],
                         ['title' => 'Launch', 'subtitle' => 'Step 3', 'body' => $p('Publish a fast, accessible website.'), '_files' => ['image' => ['card-amber.jpg']]],
@@ -289,8 +289,8 @@ $pages = [[
             'header_layout' => '2',
             'header_position' => 'center',
             'subheader' => 'Showcase',
-            'tx_conn_t3kit_base_subheader_eyebrow' => 1,
-            '_inline' => ['tx_conn_t3kit_elements_slider_items' => [
+            'tx_conn_t3wtk_base_subheader_eyebrow' => 1,
+            '_inline' => ['tx_conn_t3wtk_elements_slider_items' => [
                 $slide('card-violet.jpg', 'Brand relaunch', 'Corporate website', 'sliders'),
                 $slide('card-teal.jpg', 'Online magazine', 'Publishing', 'sliders'),
                 $slide('card-amber.jpg', 'Product platform', 'E-commerce', 'sliders'),
@@ -301,22 +301,22 @@ $pages = [[
         ] + $softBand(),
         $testimonials,
         $logoWall,
-        $cta('Ready to build your next website?', 'Install t3kit, pick your colors and start creating content today.'),
+        $cta('Ready to build your next website?', 'Install t3wtk, pick your colors and start creating content today.'),
     ],
     '_subpages' => [
         [
             '_key' => 'features',
             'title' => 'Features',
             '_content' => [
-                $intro('Features', 'A toolkit, not a template', 'Three extensions work together: conn/t3kit-base provides the design system and page templates, conn/t3kit-elements the content elements, and your sitepackage the project-specific touches.'),
+                $intro('Features', 'A toolkit, not a template', 'Three extensions work together: connetation/t3wtk-base provides the design system and page templates, connetation/t3wtk-elements the content elements, and your sitepackage the project-specific touches.'),
                 [
                     'CType' => 'conn_grid_3col',
                     'header' => 'Packages',
                     'header_layout' => '100',
                     '_children' => [
-                        210 => [$textIcon('layers', 't3kit-base', 'Page templates, navigation, footer, design tokens, light/dark theme and site settings.')],
-                        211 => [$textIcon('grid-3x3-gap', 't3kit-elements', 'More than 30 content elements — sliders, galleries, cards, data and interactive widgets.')],
-                        212 => [$textIcon('box-seam', 't3kit-sitepackage', 'Your project layer: theme overrides, forms, email templates and SEO configuration.')],
+                        210 => [$textIcon('layers', 't3wtk-base', 'Page templates, navigation, footer, design tokens, light/dark theme and site settings.')],
+                        211 => [$textIcon('grid-3x3-gap', 't3wtk-elements', 'More than 30 content elements — sliders, galleries, cards, data and interactive widgets.')],
+                        212 => [$textIcon('box-seam', 't3wtk-sitepackage', 'Your project layer: theme overrides, forms, email templates and SEO configuration.')],
                     ],
                 ],
                 [
@@ -325,8 +325,8 @@ $pages = [[
                     'header_layout' => '2',
                     'header_position' => 'center',
                     'subheader' => 'Under the hood',
-                    'tx_conn_t3kit_base_subheader_eyebrow' => 1,
-                    '_inline' => ['tx_conn_t3kit_elements_feature_grid_items' => [
+                    'tx_conn_t3wtk_base_subheader_eyebrow' => 1,
+                    '_inline' => ['tx_conn_t3wtk_elements_feature_grid_items' => [
                         $feature('sliders', 'Site settings', 'Configure colors, logo, navigation and footer in the Site Management module.'),
                         $feature('moon-stars', 'Dark mode', 'A full dark palette with a theme toggle — per site, no extra CSS.'),
                         $feature('columns-gap', 'Column layouts', 'Five container layouts to arrange any element side by side.'),
@@ -342,10 +342,10 @@ $pages = [[
                     'header_layout' => '2',
                     'header_position' => 'center',
                     'subheader' => 'How it works',
-                    'tx_conn_t3kit_base_subheader_eyebrow' => 1,
+                    'tx_conn_t3wtk_base_subheader_eyebrow' => 1,
                     'space_before_class' => 'extra-large',
-                    '_inline' => ['tx_conn_t3kit_elements_process_items' => [
-                        ['title' => 'Install', 'icon' => 'download', 'body' => $p('Require the t3kit packages via Composer.')],
+                    '_inline' => ['tx_conn_t3wtk_elements_process_items' => [
+                        ['title' => 'Install', 'icon' => 'download', 'body' => $p('Require the t3wtk packages via Composer.')],
                         ['title' => 'Configure', 'icon' => 'sliders', 'body' => $p('Add the Site Set and set your colors and logo.')],
                         ['title' => 'Create', 'icon' => 'pencil-square', 'body' => $p('Build pages with the content elements.')],
                         ['title' => 'Launch', 'icon' => 'rocket-takeoff', 'body' => $p('Go live with a fast, accessible site.')],
@@ -360,12 +360,12 @@ $pages = [[
             '_key' => 'elements',
             'title' => 'Elements',
             '_content' => [
-                $intro('Showcase', 'Content elements', 'Every element from conn/t3kit-elements, grouped by purpose. Pick a group to see the elements with real content.'),
+                $intro('Showcase', 'Content elements', 'Every element from connetation/t3wtk-elements, grouped by purpose. Pick a group to see the elements with real content.'),
                 [
                     'CType' => 'conn_subpage_cards',
                     'header' => 'Element groups',
                     'header_layout' => '100',
-                    'tx_conn_t3kit_elements_subpage_cards_source' => '',
+                    'tx_conn_t3wtk_elements_subpage_cards_source' => '',
                     '_flexform' => [
                         'sDEF' => ['settings.columns' => '3', 'settings.style' => 'shadow', 'settings.accentBar' => '1'],
                         'sContent' => ['settings.showImage' => '1', 'settings.showTeaser' => '1', 'settings.showLink' => '1', 'settings.linkLabel' => 'View elements'],
@@ -380,10 +380,10 @@ $pages = [[
                         'header' => 'Text & Media',
                         'header_layout' => '2',
                         'subheader' => 'Core element',
-                        'tx_conn_t3kit_base_subheader_eyebrow' => 1,
-                        'bodytext' => $p('The core Text &amp; Media element, styled by t3kit-base. Place images above, below or next to the text — here the image sits on the right.', $lorem) . $ul('Rich text editor with t3kit styles', 'Responsive images', 'Optional lightbox'),
+                        'tx_conn_t3wtk_base_subheader_eyebrow' => 1,
+                        'bodytext' => $p('The core Text &amp; Media element, styled by t3wtk-base. Place images above, below or next to the text — here the image sits on the right.', $lorem) . $ul('Rich text editor with t3wtk styles', 'Responsive images', 'Optional lightbox'),
                         'imageorient' => 25,
-                        'imagecols' => 2, // t3kit-base: beside-text split = 1/cols for the image
+                        'imagecols' => 2, // t3wtk-base: beside-text split = 1/cols for the image
                         '_files' => ['assets' => [['file' => 'card-sky.jpg', 'alternative' => 'Abstract blue gradient']]],
                     ],
                     [
@@ -398,8 +398,8 @@ $pages = [[
                         'header' => 'Quote',
                         'header_layout' => '100',
                         'bodytext' => $p('Good design is invisible — people only notice it when it is missing.'),
-                        'tx_conn_t3kit_elements_quote_author' => 'Erika Musterfrau',
-                        'tx_conn_t3kit_elements_quote_role' => 'Managing Director, Musterfirma',
+                        'tx_conn_t3wtk_elements_quote_author' => 'Erika Musterfrau',
+                        'tx_conn_t3wtk_elements_quote_role' => 'Managing Director, Musterfirma',
                         '_flexform' => ['sDEF' => ['settings.style' => 'container', 'settings.align' => 'center', 'settings.textSize' => 'large']],
                     ] + $imageBand('hero-sunset.jpg'),
                     $section('Text Icon', 'Text with icons'),
@@ -417,7 +417,7 @@ $pages = [[
                     ['CType' => 'conn_alert', 'header' => 'Did you know?', 'bodytext' => $p('All colors in this demo come from the site settings — change them in Site Management → Settings.'), '_flexform' => ['sDEF' => ['settings.style' => 'info']], 'space_after_class' => 'small'],
                     ['CType' => 'conn_alert', 'header' => 'Success', 'bodytext' => $p('The demo site was installed successfully.'), '_flexform' => ['sDEF' => ['settings.style' => 'success']], 'space_after_class' => 'small'],
                     ['CType' => 'conn_alert', 'header' => 'Heads up', 'bodytext' => $p('This is demo content. Replace it before going live.'), '_flexform' => ['sDEF' => ['settings.style' => 'warning'], 'dismiss' => ['settings.dismissible' => '1']], 'space_after_class' => 'small'],
-                    ['CType' => 'conn_alert', 'header' => 'Custom style', 'bodytext' => $p('Alerts can use any icon and your own colors.'), 'tx_conn_t3kit_elements_alert_custom_icon_name' => 'stars', '_flexform' => ['sDEF' => ['settings.style' => 'custom'], 'custom' => ['settings.customAccentColor' => '#8b5cf6', 'settings.customBackgroundColor' => '#8b5cf61a']]],
+                    ['CType' => 'conn_alert', 'header' => 'Custom style', 'bodytext' => $p('Alerts can use any icon and your own colors.'), 'tx_conn_t3wtk_elements_alert_custom_icon_name' => 'stars', '_flexform' => ['sDEF' => ['settings.style' => 'custom'], 'custom' => ['settings.customAccentColor' => '#8b5cf6', 'settings.customBackgroundColor' => '#8b5cf61a']]],
                 ]),
                 $showcasePage('cards', 'Cards & Layout', 'Card groups, feature grids, stacked cards and container-based column layouts.', 'card-teal.jpg', [
                     $intro('Cards & Layout', 'Cards and columns', 'Arrange content in cards and grids. Container elements put any element side by side.'),
@@ -426,7 +426,7 @@ $pages = [[
                         'header' => 'Card Group',
                         'header_layout' => '2',
                         'subheader' => 'Bootstrap cards with images, badges and links',
-                        '_inline' => ['tx_conn_t3kit_elements_card_group_items' => [
+                        '_inline' => ['tx_conn_t3wtk_elements_card_group_items' => [
                             $card('card-violet.jpg', 'Strategy', 'We analyse your goals and audience and define the right concept.', 'features', 'New'),
                             $card('card-teal.jpg', 'Design', 'A clean, consistent design system that matches your brand.', 'features'),
                             $card('card-amber.jpg', 'Development', 'Fast, accessible TYPO3 websites built on proven components.', 'features'),
@@ -438,10 +438,10 @@ $pages = [[
                         'header' => 'Feature Grid — steps variant',
                         'header_layout' => '2',
                         'space_before_class' => 'extra-large',
-                        '_inline' => ['tx_conn_t3kit_elements_feature_grid_items' => [
+                        '_inline' => ['tx_conn_t3wtk_elements_feature_grid_items' => [
                             $feature('chat-dots', 'Talk', 'Tell us about your project and goals.'),
                             $feature('vector-pen', 'Design', 'We create a concept and a design proposal.'),
-                            $feature('code-slash', 'Build', 'We implement it with t3kit and TYPO3.'),
+                            $feature('code-slash', 'Build', 'We implement it with t3wtk and TYPO3.'),
                             $feature('graph-up-arrow', 'Grow', 'We measure, learn and improve together.'),
                         ]],
                         '_flexform' => ['sDEF' => ['settings.columns' => '4', 'settings.variant' => 'steps', 'settings.iconStyle' => 'soft']],
@@ -479,7 +479,7 @@ $pages = [[
                         'header_layout' => '2',
                         'header_position' => 'center',
                         'space_before_class' => 'extra-large',
-                        '_inline' => ['tx_conn_t3kit_elements_card_stack_items' => [
+                        '_inline' => ['tx_conn_t3wtk_elements_card_stack_items' => [
                             ['title' => 'Swipe through', 'subtitle' => 'Card 1', 'body' => $p('A stacked deck of cards with smooth GSAP animations.'), '_files' => ['image' => ['card-rose.jpg']]],
                             ['title' => 'Any content', 'subtitle' => 'Card 2', 'body' => $p('Title, subtitle, text and an image per card.'), '_files' => ['image' => ['card-sky.jpg']]],
                             ['title' => 'Autoplay', 'subtitle' => 'Card 3', 'body' => $p('Optionally cycles through the cards automatically.'), '_files' => ['image' => ['card-emerald.jpg']]],
@@ -494,9 +494,9 @@ $pages = [[
                         'header' => 'Parallax Slider',
                         'header_layout' => '100',
                         'frame_class' => 'none',
-                        'tx_conn_t3kit_base_content_width' => 'fullbleed',
-                        '_files' => ['tx_conn_t3kit_elements_parallax_slider_bg_image' => ['hero-ocean.jpg']],
-                        '_inline' => ['tx_conn_t3kit_elements_parallax_slider_items' => [
+                        'tx_conn_t3wtk_base_content_width' => 'fullbleed',
+                        '_files' => ['tx_conn_t3wtk_elements_parallax_slider_bg_image' => ['hero-ocean.jpg']],
+                        '_inline' => ['tx_conn_t3wtk_elements_parallax_slider_items' => [
                             ['title' => 'Parallax Slider', 'subtitle' => 'One background, many slides', 'body' => $p('The background moves slower than the text for a subtle depth effect.'), 'text_animation' => 'words'],
                             ['title' => 'Smooth transitions', 'subtitle' => 'Powered by Swiper', 'body' => $p('Touch, keyboard and mouse navigation built in.'), 'text_animation' => 'lines'],
                             ['title' => 'Your story', 'subtitle' => 'Slide three', 'body' => $p('Use it for product tours, timelines or campaigns.'), 'link' => 't3://page?uid={page:contact}', 'link_label' => 'Contact us', 'text_animation' => 'chars'],
@@ -508,7 +508,7 @@ $pages = [[
                         'header' => 'Bootstrap Carousel',
                         'header_layout' => '2',
                         'space_before_class' => 'extra-large',
-                        '_inline' => ['tx_conn_t3kit_elements_carousel_items' => [
+                        '_inline' => ['tx_conn_t3wtk_elements_carousel_items' => [
                             ['title' => 'First slide', 'caption' => $p('Captions with title and text.'), '_files' => ['image' => ['hero-indigo.jpg']]],
                             ['title' => 'Second slide', 'caption' => $p('Optional fade effect and autoplay.'), '_files' => ['image' => ['hero-sunset.jpg']]],
                             ['title' => 'Third slide', 'caption' => $p('Opens in a lightbox if you like.'), '_files' => ['image' => ['hero-ocean.jpg']]],
@@ -520,7 +520,7 @@ $pages = [[
                         'header' => 'Thumbnails Slider',
                         'header_layout' => '2',
                         'space_before_class' => 'extra-large',
-                        '_inline' => ['tx_conn_t3kit_elements_thumbs_slider_items' => [
+                        '_inline' => ['tx_conn_t3wtk_elements_thumbs_slider_items' => [
                             $slide('card-violet.jpg', 'Violet', 'Slide one'),
                             $slide('card-teal.jpg', 'Teal', 'Slide two'),
                             $slide('card-amber.jpg', 'Amber', 'Slide three'),
@@ -536,12 +536,12 @@ $pages = [[
                         'header_layout' => '2',
                         'subheader' => 'Drag the handle to compare',
                         'space_before_class' => 'extra-large',
-                        'tx_conn_t3kit_elements_before_after_before_label' => 'Before',
-                        'tx_conn_t3kit_elements_before_after_after_label' => 'After',
-                        'tx_conn_t3kit_elements_before_after_start' => 50,
+                        'tx_conn_t3wtk_elements_before_after_before_label' => 'Before',
+                        'tx_conn_t3wtk_elements_before_after_after_label' => 'After',
+                        'tx_conn_t3wtk_elements_before_after_start' => 50,
                         '_files' => [
-                            'tx_conn_t3kit_elements_before_after_before' => ['compare-before.jpg'],
-                            'tx_conn_t3kit_elements_before_after_after' => ['compare-after.jpg'],
+                            'tx_conn_t3wtk_elements_before_after_before' => ['compare-before.jpg'],
+                            'tx_conn_t3wtk_elements_before_after_after' => ['compare-after.jpg'],
                         ],
                     ],
                 ]),
@@ -551,7 +551,7 @@ $pages = [[
                         'CType' => 'conn_mosaic_gallery',
                         'header' => 'Mosaic Gallery',
                         'header_layout' => '2',
-                        '_inline' => ['tx_conn_t3kit_elements_mosaic_gallery_items' => array_map(
+                        '_inline' => ['tx_conn_t3wtk_elements_mosaic_gallery_items' => array_map(
                             static fn(array $item) => ['title' => $item[1], '_files' => ['image' => [$item[0]]]],
                             [['hero-indigo.jpg', 'Indigo'], ['square-1.jpg', 'Square one'], ['card-teal.jpg', 'Teal'], ['square-2.jpg', 'Square two'], ['hero-sunset.jpg', 'Sunset'], ['card-amber.jpg', 'Amber'], ['square-3.jpg', 'Square three'], ['card-sky.jpg', 'Sky']]
                         )],
@@ -563,7 +563,7 @@ $pages = [[
                         'header_layout' => '2',
                         'subheader' => 'Click an image to expand it',
                         'space_before_class' => 'extra-large',
-                        '_inline' => ['tx_conn_t3kit_elements_flip_gallery_items' => array_map(
+                        '_inline' => ['tx_conn_t3wtk_elements_flip_gallery_items' => array_map(
                             static fn(array $item) => ['title' => $item[1], 'caption' => '<p>' . $item[2] . '</p>', '_files' => ['image' => [$item[0]]]],
                             [['card-violet.jpg', 'Violet', 'Deep purple tones.'], ['card-emerald.jpg', 'Emerald', 'Fresh greens.'], ['card-rose.jpg', 'Rose', 'Warm pinks.'], ['card-sky.jpg', 'Sky', 'Light blues.'], ['card-amber.jpg', 'Amber', 'Golden hues.'], ['card-teal.jpg', 'Teal', 'Calm cyan.']]
                         )],
@@ -575,7 +575,7 @@ $pages = [[
                         'header_layout' => '2',
                         'subheader' => 'Flip cards with category, text and link',
                         'space_before_class' => 'extra-large',
-                        '_inline' => ['tx_conn_t3kit_elements_flip_carousel_items' => [
+                        '_inline' => ['tx_conn_t3wtk_elements_flip_carousel_items' => [
                             ['title' => 'Corporate site', 'subtitle' => 'Web', 'category' => 'Web', 'body' => $p('A multi-language corporate website.'), '_files' => ['image' => ['card-violet.jpg']]],
                             ['title' => 'Brand identity', 'subtitle' => 'Branding', 'category' => 'Branding', 'body' => $p('Logo, colors and typography.'), '_files' => ['image' => ['card-amber.jpg']]],
                             ['title' => 'Online shop', 'subtitle' => 'Web', 'category' => 'Web', 'body' => $p('Product catalogue with checkout.'), '_files' => ['image' => ['card-teal.jpg']]],
@@ -599,20 +599,20 @@ $pages = [[
                         'CType' => 'conn_bs_tabs',
                         'header' => 'Tabs',
                         'header_layout' => '2',
-                        '_inline' => ['tx_conn_t3kit_elements_tabs_items' => [
+                        '_inline' => ['tx_conn_t3wtk_elements_tabs_items' => [
                             ['title' => 'Overview', 'body' => $p('Tabs keep related content compact. Each tab has a title and rich text.', $lorem)],
                             ['title' => 'Details', 'body' => $p('Choose between classic tabs and pills, optionally justified and with a fade animation.')],
                             ['title' => 'Specs', 'body' => $ul('Bootstrap 5 tabs', 'Keyboard accessible', 'Up to 200 tabs per element')],
                         ]],
                         '_flexform' => ['sDEF' => ['settings.style' => 'connected', 'settings.fade' => '1', 'settings.justified' => '1']],
                     ],
-                    array_replace($faq, ['header' => 'Accordion', 'header_position' => '', 'subheader' => '', 'tx_conn_t3kit_base_subheader_eyebrow' => 0, '_flexform' => ['sDEF' => ['settings.style' => 'default']]]),
+                    array_replace($faq, ['header' => 'Accordion', 'header_position' => '', 'subheader' => '', 'tx_conn_t3wtk_base_subheader_eyebrow' => 0, '_flexform' => ['sDEF' => ['settings.style' => 'default']]]),
                     [
                         'CType' => 'conn_process',
                         'header' => 'Process / Steps',
                         'header_layout' => '2',
                         'space_before_class' => 'extra-large',
-                        '_inline' => ['tx_conn_t3kit_elements_process_items' => [
+                        '_inline' => ['tx_conn_t3wtk_elements_process_items' => [
                             ['title' => 'Discovery', 'icon' => 'search', 'body' => $p('Understand goals and users.')],
                             ['title' => 'Concept', 'icon' => 'diagram-3', 'body' => $p('Structure and wireframes.')],
                             ['title' => 'Design', 'icon' => 'brush', 'body' => $p('Visual design and prototypes.')],
@@ -626,7 +626,7 @@ $pages = [[
                         'header' => 'Timeline',
                         'header_layout' => '2',
                         'space_before_class' => 'extra-large',
-                        '_inline' => ['tx_conn_t3kit_elements_timeline_items' => [
+                        '_inline' => ['tx_conn_t3wtk_elements_timeline_items' => [
                             ['date' => mktime(0, 0, 0, 1, 1, 2023), 'date_precision' => 'year', 'title' => 'The idea', 'body' => $p('A shared toolkit instead of starting every project from scratch.')],
                             ['date' => mktime(0, 0, 0, 1, 1, 2024), 'date_precision' => 'year', 'title' => 'First release', 'body' => $p('Base templates and the first content elements.')],
                             ['date' => mktime(0, 0, 0, 1, 1, 2025), 'date_precision' => 'year', 'title' => 'Elements', 'body' => $p('Sliders, galleries and data elements join the family.')],
@@ -649,13 +649,13 @@ $pages = [[
                             'display' => ['settings.style' => 'team-card', 'settings.columns' => '4', 'settings.showRole' => '1', 'settings.showBio' => '1'],
                         ],
                     ],
-                    array_replace($testimonials, ['header' => 'Testimonials', 'subheader' => '', 'tx_conn_t3kit_base_subheader_eyebrow' => 0, '_flexform' => ['sDEF' => ['settings.layout' => 'carousel', 'settings.columns' => '2', 'settings.autoplay' => '1']]]),
+                    array_replace($testimonials, ['header' => 'Testimonials', 'subheader' => '', 'tx_conn_t3wtk_base_subheader_eyebrow' => 0, '_flexform' => ['sDEF' => ['settings.layout' => 'carousel', 'settings.columns' => '2', 'settings.autoplay' => '1']]]),
                     [
                         'CType' => 'conn_map',
                         'header' => 'Map & Location',
                         'header_layout' => '2',
                         'space_before_class' => 'extra-large',
-                        '_files' => ['tx_conn_t3kit_elements_map_illustration_image' => ['card-sky.jpg']],
+                        '_files' => ['tx_conn_t3wtk_elements_map_illustration_image' => ['card-sky.jpg']],
                         '_flexform' => ['sDEF' => ['settings.provider' => 'static', 'settings.showGridOverImage' => '1', 'settings.height' => 'md'], 'panel' => ['settings.panelPosition' => 'right']],
                     ],
                 ]),
@@ -665,7 +665,7 @@ $pages = [[
             '_key' => 'about',
             'title' => 'About',
             '_content' => [
-                $intro('About us', 'We build websites people enjoy using', 'A fictional agency to show how an about page can look with t3kit. Replace this text with your own story.'),
+                $intro('About us', 'We build websites people enjoy using', 'A fictional agency to show how an about page can look with t3wtk. Replace this text with your own story.'),
                 [
                     'CType' => 'conn_grid_8_4',
                     'header' => 'Our story',
@@ -682,7 +682,7 @@ $pages = [[
                             'header' => 'Mission',
                             'header_layout' => '100',
                             'bodytext' => $p('Make the web a little faster and friendlier — one website at a time.'),
-                            'tx_conn_t3kit_elements_quote_author' => 'The t3kit team',
+                            'tx_conn_t3wtk_elements_quote_author' => 'The t3wtk team',
                             '_flexform' => ['sDEF' => ['settings.style' => 'mark', 'settings.align' => 'left']],
                         ]],
                     ],
@@ -693,7 +693,7 @@ $pages = [[
                     'header_layout' => '2',
                     'header_position' => 'center',
                     'subheader' => 'Team',
-                    'tx_conn_t3kit_base_subheader_eyebrow' => 1,
+                    'tx_conn_t3wtk_base_subheader_eyebrow' => 1,
                     'space_before_class' => 'extra-large',
                     '_flexform' => [
                         'sDEF' => ['settings.source' => 'folder', 'settings.folder' => '{page:records}'],
@@ -707,7 +707,7 @@ $pages = [[
                     'header_layout' => '2',
                     'header_position' => 'center',
                     'space_before_class' => 'extra-large',
-                    '_inline' => ['tx_conn_t3kit_elements_timeline_items' => [
+                    '_inline' => ['tx_conn_t3wtk_elements_timeline_items' => [
                         ['date' => mktime(0, 0, 0, 3, 1, 2019), 'date_precision' => 'year', 'title' => 'Founded', 'body' => $p('Three people, one office, lots of ideas.'), '_files' => ['image' => ['card-violet.jpg']]],
                         ['date' => mktime(0, 0, 0, 6, 1, 2021), 'date_precision' => 'year', 'title' => '100th website', 'body' => $p('A milestone we celebrated with the whole team.'), '_files' => ['image' => ['card-amber.jpg']]],
                         ['date' => mktime(0, 0, 0, 9, 1, 2024), 'date_precision' => 'year', 'title' => 'New studio', 'body' => $p('More space for a growing team.'), '_files' => ['image' => ['card-teal.jpg']]],
@@ -726,7 +726,7 @@ $pages = [[
                     'CType' => 'conn_bs_pricing',
                     'header' => 'Plans',
                     'header_layout' => '100',
-                    '_inline' => ['tx_conn_t3kit_elements_pricing_tiers' => [
+                    '_inline' => ['tx_conn_t3wtk_elements_pricing_tiers' => [
                         ['name' => 'Starter', 'tagline' => 'For small websites', 'currency' => '€', 'amount' => '29', 'period' => 'per month', 'features' => "Up to 10 pages\nAll content elements\nEmail support\n-Multi-language\n-Custom design", 'cta_label' => 'Choose Starter', 'cta_link' => 't3://page?uid={page:contact}'],
                         ['name' => 'Business', 'tagline' => 'For growing companies', 'currency' => '€', 'amount' => '79', 'period' => 'per month', 'features' => "Unlimited pages\nAll content elements\nPriority support\nMulti-language\n-Custom design", 'cta_label' => 'Choose Business', 'cta_link' => 't3://page?uid={page:contact}', 'featured' => 1, 'badge_text' => 'Most popular'],
                         ['name' => 'Enterprise', 'tagline' => 'For large organisations', 'currency' => '€', 'amount' => '199', 'period' => 'per month', 'price_note' => 'Billed annually', 'features' => "Unlimited pages\nAll content elements\nDedicated support\nMulti-language\nCustom design", 'cta_label' => 'Contact sales', 'cta_link' => 't3://page?uid={page:contact}'],
@@ -742,7 +742,7 @@ $pages = [[
             '_key' => 'contact',
             'title' => 'Contact',
             '_content' => [
-                $intro('Contact', 'Let’s talk', 'Send us a message using the form below — it is the contact form shipped with conn/t3kit-sitepackage, including client-side validation and branded emails.'),
+                $intro('Contact', 'Let’s talk', 'Send us a message using the form below — it is the contact form shipped with connetation/t3wtk-sitepackage, including client-side validation and branded emails.'),
                 [
                     'CType' => 'conn_grid_8_4',
                     'header' => 'Contact',
@@ -753,7 +753,7 @@ $pages = [[
                             'header' => 'Write us',
                             'header_layout' => '3',
                             '_flexform' => ['sDEF' => [
-                                'settings.persistenceIdentifier' => 'EXT:conn_t3kit_sitepackage/Resources/Private/Forms/Contact.form.yaml',
+                                'settings.persistenceIdentifier' => 'EXT:conn_t3wtk_sitepackage/Resources/Private/Forms/Contact.form.yaml',
                                 'settings.overrideFinishers' => '0',
                             ]],
                         ]],
@@ -769,7 +769,7 @@ $pages = [[
                     'header' => 'Find us',
                     'header_layout' => '3',
                     'space_before_class' => 'extra-large',
-                    '_files' => ['tx_conn_t3kit_elements_map_illustration_image' => ['hero-ocean.jpg']],
+                    '_files' => ['tx_conn_t3wtk_elements_map_illustration_image' => ['hero-ocean.jpg']],
                     '_flexform' => ['sDEF' => ['settings.provider' => 'static', 'settings.showGridOverImage' => '1', 'settings.height' => 'lg'], 'panel' => ['settings.panelPosition' => 'left']],
                 ],
             ],
@@ -787,7 +787,7 @@ $pages = [[
             'title' => 'Privacy Policy',
             'nav_hide' => 1,
             '_content' => [
-                ['CType' => 'conn_text_column', 'header' => 'Privacy Policy', 'header_layout' => '1', 'bodytext' => $p('This is a placeholder privacy policy for the t3kit demo site. Replace it with a policy that matches the data processing of your website.', 'The contact form sends the entered data by email to the site owner. No data is stored in the database by the demo form.', 'This demo site does not use tracking or third-party cookies. The static map shows an illustration instead of loading an external map provider.')],
+                ['CType' => 'conn_text_column', 'header' => 'Privacy Policy', 'header_layout' => '1', 'bodytext' => $p('This is a placeholder privacy policy for the t3wtk demo site. Replace it with a policy that matches the data processing of your website.', 'The contact form sends the entered data by email to the site owner. No data is stored in the database by the demo form.', 'This demo site does not use tracking or third-party cookies. The static map shows an illustration instead of loading an external map provider.')],
             ],
         ],
         [
@@ -805,7 +805,7 @@ $pages = [[
             '_key' => 'records',
             'title' => 'Demo Records',
             'doktype' => 254,
-            '_records' => ['tx_conn_t3kit_elements_domain_model_person' => [
+            '_records' => ['tx_conn_t3wtk_elements_domain_model_person' => [
                 ['name' => 'Erika Musterfrau', 'role' => 'Managing Director', 'bio' => $p('Erika keeps the studio running and every project on track.'), 'email' => 'erika@example.com', '_files' => ['image' => ['square-1.jpg']]],
                 ['name' => 'Max Mustermann', 'role' => 'Lead Developer', 'bio' => $p('Max turns designs into fast, accessible TYPO3 websites.'), 'email' => 'max@example.com', '_files' => ['image' => ['square-2.jpg']]],
                 ['name' => 'Maria Muster', 'role' => 'Creative Director', 'bio' => $p('Maria shapes the look and feel of every brand we work with.'), 'email' => 'maria@example.com', '_files' => ['image' => ['square-3.jpg']]],
@@ -822,9 +822,9 @@ return [
     'site' => [
         // "base" is set by the installer: "/" on a fresh installation, this value next to existing sites.
         'baseWithOtherSites' => '/t3kit-demo/',
-        'websiteTitle' => 't3kit Demo',
-        // Theme = second Set, from conn/t3kit-base: conn/t3kit-theme-{indigo|forest|sunset|midnight|flat}
-        'dependencies' => ['conn/t3kit-demosite', 'conn/t3kit-theme-indigo'],
+        'websiteTitle' => 't3wtk Demo',
+        // Theme = second Set, from connetation/t3wtk-base: connetation/t3wtk-theme-{indigo|forest|sunset|midnight|flat}
+        'dependencies' => ['connetation/t3wtk-demosite', 'connetation/t3wtk-theme-indigo'],
         'languages' => [[
             'title' => 'English',
             'enabled' => true,
@@ -841,13 +841,13 @@ return [
             'errorContentSource' => 't3://page?uid={page:notfound}',
         ]],
     ],
-    // Site-specific values only. Colors, navbar and footer layout come from the conn/t3kit-base
+    // Site-specific values only. Colors, navbar and footer layout come from the connetation/t3wtk-base
     // theme Set — values here would override every theme. No branding.logo* here: the demo
     // logos (demosite.logo.*) are picked per theme by Theme/ThemeLogos, since a single logo
     // image can't suit light and dark navbars.
     'settings' => [
-        'branding.logoAlt' => 't3kit demo',
-        'footer.tagline' => 'Beautiful TYPO3 websites, built with t3kit.',
+        'branding.logoAlt' => 't3wtk demo',
+        'footer.tagline' => 'Beautiful TYPO3 websites, built with the TYPO3 Web Toolkit.',
         'footer.navigation.type' => 'list',
         'footer.navigation.pages' => '{page:features},{page:elements},{page:about},{page:pricing},{page:contact}',
         'footer.barNavigation.type' => 'list',

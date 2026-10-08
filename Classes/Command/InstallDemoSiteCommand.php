@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Connetation\T3kitDemosite\Command;
+namespace Connetation\T3wtkDemosite\Command;
 
-use Connetation\T3kitDemosite\Installer\DemoSiteInstaller;
+use Connetation\T3wtkDemosite\Installer\DemoSiteInstaller;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,8 +14,10 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Core\Bootstrap;
 
 #[AsCommand(
-    name: 't3kit:demosite:install',
-    description: 'Creates the t3kit demo page tree, content and site configuration.',
+    name: 't3wtk:demosite:install',
+    description: 'Creates the TYPO3 Web Toolkit demo page tree, content and site configuration.',
+    // Former name, kept for existing scripts.
+    aliases: ['t3kit:demosite:install'],
 )]
 final class InstallDemoSiteCommand extends Command
 {
@@ -49,7 +51,7 @@ final class InstallDemoSiteCommand extends Command
             $io->error($e->getMessage());
             return Command::FAILURE;
         }
-        $io->success(sprintf('t3kit demo site installed (root page uid %d, site "%s").', $rootPageUid, DemoSiteInstaller::SITE_IDENTIFIER));
+        $io->success(sprintf('TYPO3 Web Toolkit demo site installed (root page uid %d, site "%s").', $rootPageUid, DemoSiteInstaller::SITE_IDENTIFIER));
         return Command::SUCCESS;
     }
 }

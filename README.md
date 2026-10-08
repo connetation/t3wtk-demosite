@@ -1,31 +1,31 @@
-# t3kit Demo Site for TYPO3 LTS 14
+# TYPO3 Web Toolkit Demo Site for TYPO3 LTS 14
 
-Introduction package for the t3kit toolkit, in the spirit of TYPO3's
+Introduction package for the TYPO3 Web Toolkit (t3wtk), in the spirit of TYPO3's
 `typo3/cms-introduction`. Installing it creates a complete, good-looking
 demo website: a page tree, a site configuration, site settings and content
-elements from `conn/t3kit-elements`, all rendered with `conn/t3kit-base`
-and `conn/t3kit-sitepackage`.
+elements from `connetation/t3wtk-elements`, all rendered with `connetation/t3wtk-base`
+and `connetation/t3wtk-sitepackage`.
 
-Use it to show clients what t3kit can do, to try out elements, or as a
+Use it to show clients what the TYPO3 Web Toolkit can do, to try out elements, or as a
 reference for how each element is configured.
 
 ## Installation
 
 ```bash
-composer require conn/t3kit-demosite
-vendor/bin/typo3 extension:setup -e conn_t3kit_demosite
+composer require connetation/t3wtk-demosite
+vendor/bin/typo3 extension:setup -e conn_t3wtk_demosite
 ```
 
-`conn/t3kit-sitepackage` must already be installed in the project. It is only
+`connetation/t3wtk-sitepackage` must already be installed in the project. It is only
 suggested in `composer.json`, not required, because every project owns its own
 copy of it (e.g. `t3kit-quickstart-shell` moves it to `packages/` as a
 `dev-local` path package, which a `^2.0.0` constraint would not accept). The
-Site Set still declares `conn/t3kit-sitepackage` as a dependency.
+Site Set still declares `connetation/t3wtk-sitepackage` as a dependency.
 
 `extension:setup` (also run by the TYPO3 installer and by activating the
 extension in the Extension Manager) does the following once:
 
-1. The core copies `Initialisation/Files/` to `fileadmin/conn_t3kit_demosite/`.
+1. The core copies `Initialisation/Files/` to `fileadmin/conn_t3wtk_demosite/`.
 2. `InstallDemoSiteOnPackageInitialization` creates the page tree and content
    via DataHandler and writes `config/sites/t3kit-demosite/` (`config.yaml` +
    `settings.yaml`).
@@ -34,7 +34,7 @@ The installation is remembered in the registry, so it never runs twice. To
 install again, delete the demo page tree and the `t3kit-demosite` site, then:
 
 ```bash
-vendor/bin/typo3 t3kit:demosite:install --force
+vendor/bin/typo3 t3wtk:demosite:install --force
 ```
 
 ### Site base
@@ -47,34 +47,34 @@ Adjust `base` in Site Management afterwards if you want it somewhere else.
 
 ## Themes
 
-The look comes from **conn/t3kit-base**'s theme Sets (colors light + dark,
+The look comes from **connetation/t3wtk-base**'s theme Sets (colors light + dark,
 navigation and footer layout, see its README). The demo site uses two Sets:
-`conn/t3kit-demosite` for the content and functionality, plus one theme:
+`connetation/t3wtk-demosite` for the content and functionality, plus one theme:
 
 | Theme Set | Colors | Navigation | Footer |
 |---|---|---|---|
-| `conn/t3kit-theme-indigo` (installed default) | Indigo / violet | Horizontal, right aligned, grid dropdowns | Brand row, then 3 columns |
-| `conn/t3kit-theme-forest` | Emerald / teal | Off-canvas panel from the right | Centered, dark green |
-| `conn/t3kit-theme-sunset` | Rose / orange, warm paper | Horizontal, centered, list dropdowns | Minimal, one row |
-| `conn/t3kit-theme-midnight` | Cyan / violet, dark navbar + footer | Off-canvas panel from the left | 3 columns, dark |
-| `conn/t3kit-theme-flat` | Zinc / blue, flat: square corners, no shadows | Horizontal, right aligned, list dropdowns | 4 columns, dark |
+| `connetation/t3wtk-theme-indigo` (installed default) | Indigo / violet | Horizontal, right aligned, grid dropdowns | Brand row, then 3 columns |
+| `connetation/t3wtk-theme-forest` | Emerald / teal | Off-canvas panel from the right | Centered, dark green |
+| `connetation/t3wtk-theme-sunset` | Rose / orange, warm paper | Horizontal, centered, list dropdowns | Minimal, one row |
+| `connetation/t3wtk-theme-midnight` | Cyan / violet, dark navbar + footer | Off-canvas panel from the left | 3 columns, dark |
+| `connetation/t3wtk-theme-flat` | Zinc / blue, flat: square corners, no shadows | Horizontal, right aligned, list dropdowns | 4 columns, dark |
 
 To switch, replace the theme in `config/sites/t3kit-demosite/config.yaml` (or in
 Site Management → Sites → Sets) and flush the caches:
 
 ```yaml
 dependencies:
-  - conn/t3kit-demosite
-  - conn/t3kit-theme-sunset
+  - connetation/t3wtk-demosite
+  - connetation/t3wtk-theme-sunset
 ```
 
 - **Order:** the order in the list doesn't matter; TYPO3 orders Sets by
   dependency.
-- **Required:** keep `conn/t3kit-demosite` in the list. A theme alone only
-  brings `conn/t3kit-base`, so the content elements would have no rendering
+- **Required:** keep `connetation/t3wtk-demosite` in the list. A theme alone only
+  brings `connetation/t3wtk-base`, so the content elements would have no rendering
   definition.
-- **Without a theme:** the site uses the conn/t3kit-base defaults.
-- **`conn/t3kit-demosite` sets no theme keys** (only `themeToggle.enabled`
+- **Without a theme:** the site uses the connetation/t3wtk-base defaults.
+- **`connetation/t3wtk-demosite` sets no theme keys** (only `themeToggle.enabled`
   and the `branding.*` favicons), so every theme applies fully. The demo has
   no logo; the header and footer show the site title, which works on every
   theme.
@@ -103,7 +103,7 @@ translucent gray. Buttons, icons, eyebrows, links and cards follow the theme.
 | └ Data & People | Stats, People, Testimonials (carousel), Map |
 | **About** | Wide + Narrow, People (reveal), Stats, Timeline, CTA |
 | **Pricing** | Pricing Table, Logo Wall, FAQ, CTA |
-| **Contact** | Contact form (from `conn/t3kit-sitepackage`) + Text Icons, Map |
+| **Contact** | Contact form (from `connetation/t3wtk-sitepackage`) + Text Icons, Map |
 | Imprint, Privacy Policy | Hidden in menu, linked in the footer bar |
 | Page not found | 404 error page of the site |
 | Demo Records (folder) | Person records for the People element |
@@ -126,7 +126,7 @@ in `Classes/Installer/DemoSiteInstaller.php`. In short:
     '_content' => [[
         'CType' => 'conn_bs_card_group',     // any tt_content field
         'header' => 'Cards',
-        '_inline' => ['tx_conn_t3kit_elements_card_group_items' => [   // IRRE children
+        '_inline' => ['tx_conn_t3wtk_elements_card_group_items' => [   // IRRE children
             ['title' => 'Card', '_files' => ['image' => ['card-teal.jpg']]],
         ]],
         '_flexform' => ['sDEF' => ['settings.columns' => '3']],
@@ -141,7 +141,7 @@ are generated abstract gradients (no licensing issues); regenerate or add new
 ones with:
 
 ```bash
-ddev exec packages/t3kit-demosite/Build/generate-images.sh
+ddev exec vendor/connetation/t3wtk-demosite/Build/generate-images.sh
 ```
 
 The favicons in `Resources/Public/Icons/Favicon/` (SVG with dark mode, ICO,
@@ -149,23 +149,23 @@ apple-touch-icon and the 192/512 manifest icons) show the "T" mark of the demo
 logo. The Set wires them up via the `branding.*` settings; regenerate them with:
 
 ```bash
-ddev exec packages/t3kit-demosite/Build/generate-favicons.sh
+ddev exec vendor/connetation/t3wtk-demosite/Build/generate-favicons.sh
 ```
 
 ## Structure
 
 ```
-conn/t3kit-demosite/                   # ext key: conn_t3kit_demosite
+connetation/t3wtk-demosite/                   # ext key: conn_t3wtk_demosite
 ├── Build/generate-images.sh           # Regenerates the demo images (ImageMagick)
 ├── Build/generate-favicons.sh         # Regenerates the favicons (ImageMagick)
 ├── Classes/
-│   ├── Command/InstallDemoSiteCommand.php                 # t3kit:demosite:install
+│   ├── Command/InstallDemoSiteCommand.php                 # t3wtk:demosite:install (alias: t3kit:demosite:install)
 │   ├── EventListener/InstallDemoSiteOnPackageInitialization.php
 │   └── Installer/DemoSiteInstaller.php                    # DataHandler-based importer
 ├── Configuration/
 │   ├── DemoSite/Definition.php        # The demo: pages, content, site config, settings
 │   └── Sets/
-│       └── Demosite/                  # conn/t3kit-demosite: dependencies, form redirect override
-├── Initialisation/Files/images/       # Copied to fileadmin/conn_t3kit_demosite/
+│       └── Demosite/                  # connetation/t3wtk-demosite: dependencies, form redirect override
+├── Initialisation/Files/images/       # Copied to fileadmin/conn_t3wtk_demosite/
 └── Resources/Public/Icons/Favicon/    # Demo favicons (branding.* settings)
 ```
