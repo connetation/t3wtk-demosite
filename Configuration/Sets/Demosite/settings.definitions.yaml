@@ -34,12 +34,12 @@ settings:
     label: 'Demo logo – for light backgrounds'
     description: 'Dark logo variant. Used for every navbar/footer logo slot whose background is light in the active theme (unless branding.logo* / footer.logo* are set). EXT: path, fileadmin path or full URL.'
     type: string
-    default: 'fileadmin/conn_t3wtk_demosite/images/t3kit-logo-dark.svg'
+    default: 'EXT:conn_t3wtk_demosite/Resources/Public/Images/t3wtk-logo-dark.svg'
     category: conn.demosite
 
   demosite.logo.onDark:
     label: 'Demo logo – for dark backgrounds'
     description: 'Light logo variant. Used for every navbar/footer logo slot whose background is dark in the active theme (e.g. Midnight''s navbar). Empty both to show the site title instead.'
     type: string
-    default: 'fileadmin/conn_t3wtk_demosite/images/t3kit-logo-light.svg'
+    default: 'EXT:conn_t3wtk_demosite/Resources/Public/Images/t3wtk-logo-light.svg'
     category: conn.demosite

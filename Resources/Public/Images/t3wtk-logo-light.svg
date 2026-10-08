@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="148" height="40" viewBox="0 0 148 40" role="img" aria-label="t3wtk demo">
+  <rect x="2" y="4" width="32" height="32" rx="8" fill="#f8fafc"/>
+  <path d="M11 13h14M18 13v15" fill="none" stroke="#0f172a" stroke-width="3.5" stroke-linecap="round"/>
+  <circle cx="26.5" cy="27" r="2.5" fill="#64748b"/>
+  <g font-family="Inter, 'Segoe UI', Helvetica, Arial, sans-serif" font-size="20">
+    <text x="44" y="27" textLength="44" lengthAdjust="spacingAndGlyphs" font-weight="700" fill="#f8fafc">t3wtk</text>
+    <text x="94" y="27" textLength="50" lengthAdjust="spacingAndGlyphs" font-weight="400" fill="#cbd5e1">demo</text>
+  </g>
+</svg>
