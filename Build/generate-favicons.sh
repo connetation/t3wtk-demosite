@@ -20,45 +20,34 @@
 #
 
 # Regenerates the demo favicons in Resources/Public/Icons/Favicon (ImageMagick 6/7).
-# The icon is the "T" mark of the demo logo (Initialisation/Files/images/t3kit-logo-*.svg).
+# The icon is the Connetation hexagon mark, the same artwork as the toolkit's extension
+# icon (connetation/t3wtk-base Resources/Public/Icons/Extension.svg).
 # Used by the branding.* settings in Configuration/Sets/Demosite/settings.yaml.
-#   ddev exec packages/t3kit-demosite/Build/generate-favicons.sh
+#   ddev exec vendor/connetation/t3wtk-demosite/Build/generate-favicons.sh
 set -euo pipefail
 cd "$(dirname "$0")/../Resources/Public/Icons/Favicon"
 
-# mark  radius bg fg dot — the logo mark on a 32×32 grid
+HEXAGON='M83.22,69.42v-26.03s0-4.51-3.9-6.75l-22.57-13.01s-3.9-2.24-7.81,0l-22.51,13.01s-3.9,2.24-3.9,6.75v26.06s0,4.51,3.9,6.75l22.54,13.04s3.9,2.27,7.81,0l22.51-13.01s3.93-2.3,3.93-6.81M42.73,55.2c0,2.27-1.85,4.12-4.11,4.12s-4.12-1.85-4.12-4.12,1.85-4.12,4.12-4.12c2.27.03,4.11,1.85,4.11,4.12M42.73,68.06c0,2.27-1.85,4.12-4.11,4.12s-4.12-1.85-4.12-4.12,1.85-4.12,4.12-4.12,4.11,1.84,4.11,4.12M59.28,40.86l-8.47,31.11-.27.21h-4.3l-.18-.21,8.47-31.11.27-.21h4.3l.18.21ZM71.3,40.86l-8.47,31.11-.27.21h-4.3l-.18-.21,8.47-31.11.27-.21h4.3l.18.21Z'
+COLOR='#aaaaae'
+
+# mark viewBox [background] — the hexagon (62×69, centered at 53/57) in a square viewBox
 mark() {
-    local radius=$1 bg=$2 fg=$3 dot=$4
-    cat <<SVG
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <rect width="32" height="32" rx="$radius" fill="$bg"/>
-  <path d="M9 9h14M16 9v15" fill="none" stroke="$fg" stroke-width="3.5" stroke-linecap="round"/>
-  <circle cx="24.5" cy="23" r="2.5" fill="$dot"/>
-</svg>
-SVG
+    local viewbox=$1 bg=${2:-}
+    echo "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"32\" height=\"32\" viewBox=\"$viewbox\">"
+    [[ -n $bg ]] && echo "  <rect x=\"-100\" y=\"-100\" width=\"300\" height=\"300\" fill=\"$bg\"/>"
+    echo "  <path fill=\"$COLOR\" d=\"$HEXAGON\"/>"
+    echo "</svg>"
 }
 
-# Modern browsers: SVG that switches to the light-logo colors in dark mode
-cat > favicon.svg <<'SVG'
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
-  <style>
-    .bg { fill: #0f172a } .fg { stroke: #ffffff } .dot { fill: #94a3b8 }
-    @media (prefers-color-scheme: dark) {
-      .bg { fill: #f8fafc } .fg { stroke: #0f172a } .dot { fill: #64748b }
-    }
-  </style>
-  <rect class="bg" width="32" height="32" rx="8"/>
-  <path class="fg" d="M9 9h14M16 9v15" fill="none" stroke-width="3.5" stroke-linecap="round"/>
-  <circle class="dot" cx="24.5" cy="23" r="2.5"/>
-</svg>
-SVG
+# Modern browsers: the mid-gray mark reads on light and dark tabs alike
+mark "18.5 22.5 69 69" > connetation-favicon.svg
 
 tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT
-mark 8 "#0f172a" "#ffffff" "#94a3b8" > "$tmp/rounded.svg"
-# Full-bleed square for home-screen icons: iOS/Android apply their own mask, and the
-# mark stays inside the maskable safe zone
-mark 0 "#0f172a" "#ffffff" "#94a3b8" > "$tmp/square.svg"
+mark "18.5 22.5 69 69" > "$tmp/tight.svg"
+# Home-screen icons: opaque white square; iOS/Android apply their own mask, so the
+# mark keeps to the maskable safe zone (central 80 %)
+mark "-0.5 3.5 107 107" "#ffffff" > "$tmp/square.svg"
 
 # size source output [convert options] — rendered large, then downscaled for clean edges
 png() {
@@ -66,10 +55,10 @@ png() {
 }
 
 # Legacy browsers, crawlers: multi-size ICO
-for size in 16 32 48; do png $size rounded "$tmp/ico-$size.png"; done
-convert "$tmp/ico-16.png" "$tmp/ico-32.png" "$tmp/ico-48.png" favicon.ico
+for size in 16 32 48; do png $size tight "$tmp/ico-$size.png"; done
+convert "$tmp/ico-16.png" "$tmp/ico-32.png" "$tmp/ico-48.png" connetation-favicon.ico
 
 # Home-screen icons must be opaque
-png 180 square apple-touch-icon.png -alpha off
-png 192 square icon-192.png -alpha off
-png 512 square icon-512.png -alpha off
+png 180 square connetation-apple-touch-icon.png -alpha off
+png 192 square connetation-icon-192.png -alpha off
+png 512 square connetation-icon-512.png -alpha off

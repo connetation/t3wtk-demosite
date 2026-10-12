@@ -674,8 +674,8 @@ $pages = [[
                         'header' => 'Map & Location',
                         'header_layout' => '2',
                         'space_before_class' => 'extra-large',
-                        '_files' => ['tx_conn_t3wtk_elements_map_illustration_image' => ['card-sky.jpg']],
-                        '_flexform' => ['sDEF' => ['settings.provider' => 'static', 'settings.showGridOverImage' => '1', 'settings.height' => 'md'], 'panel' => ['settings.panelPosition' => 'right']],
+                        '_files' => ['tx_conn_t3wtk_elements_map_illustration_image' => ['map-connetation.png']],
+                        '_flexform' => ['sDEF' => ['settings.provider' => 'static', 'settings.showGridOverImage' => '0', 'settings.height' => 'md'], 'panel' => ['settings.panelPosition' => 'right']],
                     ],
                 ]),
             ],
@@ -777,9 +777,9 @@ $pages = [[
                             ]],
                         ]],
                         241 => [
-                            $textIcon('telephone', 'Call us', '+43 1 000 00 00<br>Mon–Fri, 9:00–17:00', 'circle', 'left'),
-                            $textIcon('envelope', 'Email', 'hello@example.com', 'circle', 'left'),
-                            $textIcon('geo-alt', 'Visit', 'Musterstraße 1<br>1010 Vienna, Austria', 'circle', 'left'),
+                            $textIcon('telephone', 'Call us', '+43 662 216065<br>Mon–Fri, 9:00–17:00', 'circle', 'left'),
+                            $textIcon('envelope', 'Email', 'office@connetation.at', 'circle', 'left'),
+                            $textIcon('geo-alt', 'Visit', 'Vogelweiderstraße 44A<br>5020 Salzburg, Austria', 'circle', 'left'),
                         ],
                     ],
                 ],
@@ -788,8 +788,8 @@ $pages = [[
                     'header' => 'Find us',
                     'header_layout' => '3',
                     'space_before_class' => 'extra-large',
-                    '_files' => ['tx_conn_t3wtk_elements_map_illustration_image' => ['hero-ocean.jpg']],
-                    '_flexform' => ['sDEF' => ['settings.provider' => 'static', 'settings.showGridOverImage' => '1', 'settings.height' => 'lg'], 'panel' => ['settings.panelPosition' => 'left']],
+                    '_files' => ['tx_conn_t3wtk_elements_map_illustration_image' => ['map-connetation.png']],
+                    '_flexform' => ['sDEF' => ['settings.provider' => 'static', 'settings.showGridOverImage' => '0', 'settings.height' => 'lg'], 'panel' => ['settings.panelPosition' => 'left']],
                 ],
             ],
         ],
@@ -798,7 +798,16 @@ $pages = [[
             'title' => 'Imprint',
             'nav_hide' => 1,
             '_content' => [
-                ['CType' => 'text', 'header' => 'Imprint', 'header_layout' => '1', 'bodytext' => $p('<strong>Musterfirma GmbH</strong><br>Musterstraße 1<br>1010 Vienna, Austria', 'Email: hello@example.com<br>Phone: +43 1 000 00 00', 'This is a demo imprint. Replace it with the legal information of your organisation.')],
+                ['CType' => 'text', 'header' => 'Imprint', 'header_layout' => '1', 'bodytext' => $p(
+                    '<strong>Connetation Web Engineering GmbH</strong><br>Vogelweiderstraße 44A<br>5020 Salzburg<br>Austria',
+                    'Managing Director: Michael Gebhart',
+                    'Phone: <a href="tel:+43662216065">+43 662 216065</a><br>Email: <a href="mailto:office@connetation.at">office@connetation.at</a>',
+                    'Commercial register: Regional Court Salzburg, FN 394822x<br>VAT ID: ATU67860709',
+                )],
+                ['CType' => 'text', 'header' => 'Legal notice', 'header_layout' => '2', 'bodytext' => $p(
+                    'All texts, images and other information published on this website are subject to the copyright of the provider, unless third-party copyrights apply. Reproduction, distribution or public display is only permitted with the revocable and non-transferable consent of the provider. Links to the content of this website require the consent of the provider. This consent must be requested again whenever the content of the linking website changes fundamentally, and it can be revoked informally at any time. Links from pages with illegal, offensive, misleading or defamatory content are excluded in every case. The content of this website is created with the greatest care. Nevertheless, no guarantee can be given that it is up to date and complete. The provider accepts no responsibility for web content reached via links, as it is not the provider\'s own content. External links were checked for unlawful content; none was apparent at the time of linking. There is, however, no general obligation to monitor and check third-party content. Trademarks and brand names mentioned are the property of their respective owners.',
+                    'Despite careful control of the content, Connetation accepts no liability for content and offers reached via external links. The operators of the linked pages are solely responsible for their content. Graphics, videos, sounds and texts of this website may not be reproduced in other electronic or printed publications without express written consent.',
+                )],
             ],
         ],
         [
@@ -806,7 +815,7 @@ $pages = [[
             'title' => 'Privacy Policy',
             'nav_hide' => 1,
             '_content' => [
-                ['CType' => 'conn_text_column', 'header' => 'Privacy Policy', 'header_layout' => '1', 'bodytext' => $p('This is a placeholder privacy policy for the t3wtk demo site. Replace it with a policy that matches the data processing of your website.', 'The contact form sends the entered data by email to the site owner. No data is stored in the database by the demo form.', 'This demo site does not use tracking or third-party cookies. The static map shows an illustration instead of loading an external map provider.')],
+                ['CType' => 'conn_text_column', 'header' => 'Privacy Policy', 'header_layout' => '1', 'bodytext' => $p('This is a placeholder privacy policy for the t3wtk demo site. Replace it with a policy that matches the data processing of your website.', 'The contact form sends the entered data by email to the site owner. No data is stored in the database by the demo form.', 'This demo site does not use tracking or third-party cookies. The maps show a static image instead of loading an external map provider.')],
             ],
         ],
         [
@@ -865,7 +874,7 @@ return [
     // logos (demosite.logo.*) are picked per theme by Theme/ThemeLogos, since a single logo
     // image can't suit light and dark navbars.
     'settings' => [
-        'branding.logoAlt' => 't3wtk demo',
+        'branding.logoAlt' => 'Connetation',
         'footer.tagline' => 'Beautiful TYPO3 websites, built with the TYPO3 Web Toolkit.',
         'footer.navigation.type' => 'list',
         'footer.navigation.pages' => '{page:features},{page:elements},{page:about},{page:pricing},{page:contact}',
@@ -873,18 +882,19 @@ return [
         'footer.barNavigation.pages' => '{page:imprint},{page:privacy}',
         'footer.barNavigation.includeNotInMenu' => true,
         // Contact (footer address, navbar panel, map element)
-        'contact.address.company' => 'Musterfirma GmbH',
-        'contact.address.street' => 'Musterstraße 1',
-        'contact.address.zip' => '1010',
-        'contact.address.city' => 'Vienna',
+        'contact.address.company' => 'Connetation Web Engineering GmbH',
+        'contact.address.street' => 'Vogelweiderstraße 44A',
+        'contact.address.zip' => '5020',
+        'contact.address.city' => 'Salzburg',
         'contact.address.country' => 'Austria',
-        // Vienna subscriber numbers never start with 0 — this number can't belong to anyone.
-        'contact.phone' => '+43 1 000 00 00',
-        'contact.email' => 'hello@example.com',
+        'contact.address.url' => 'https://maps.app.goo.gl/B375bNVhHqPtGyMT9',
+        'contact.phone' => '+43 662 216065',
+        'contact.email' => 'office@connetation.at',
         'contact.officeHours' => 'Mon–Fri, 9:00–17:00',
-        // Social (placeholders — example.com is reserved for documentation, RFC 2606)
-        'social.github' => 'https://example.com/github',
-        'social.linkedin' => 'https://example.com/linkedin',
-        'social.youtube' => 'https://example.com/youtube',
+        'social.github' => 'https://github.com/connetation',
+        'social.linkedin' => 'https://at.linkedin.com/company/connetation-web-engineering',
+        'social.x' => 'https://x.com/connetation',
+        'social.instagram' => 'https://www.instagram.com/connetation',
+        'social.facebook' => 'https://www.facebook.com/connetation/',
     ],
 ];

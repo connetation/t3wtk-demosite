@@ -210,9 +210,9 @@ ones with:
 ddev exec vendor/connetation/t3wtk-demosite/Build/generate-images.sh
 ```
 
-The favicons in `Resources/Public/Icons/Favicon/` (SVG with dark mode, ICO,
-apple-touch-icon and the 192/512 manifest icons) show the "T" mark of the demo
-logo. The Set wires them up via the `branding.*` settings; regenerate them with:
+The favicons in `Resources/Public/Icons/Favicon/` (SVG, ICO, apple-touch-icon
+and the 192/512 manifest icons) show the Connetation hexagon mark, the same
+artwork as the toolkit's extension icon. The Set wires them up via the `branding.*` settings; regenerate them with:
 
 ```bash
 ddev exec vendor/connetation/t3wtk-demosite/Build/generate-favicons.sh
