@@ -1,4 +1,70 @@
-# TYPO3 Web Toolkit Demo Site for TYPO3 LTS 14
+# T3WTK – Connetation TYPO3 Web Toolkit
+
+From an empty TYPO3 installation to a complete, themeable website in hours instead of weeks.
+
+T3WTK is a modular set of TYPO3 extensions for TYPO3 14 LTS. It replaces the groundwork
+that has to be redone on almost every project: sitepackage, page templates, navigation,
+footer, content elements, dark mode, forms and SEO setup. Once installed via Composer,
+your team can start with configuration, design and content right away.
+
+## Packages
+
+| Package | Purpose |
+|---|---|
+| `connetation/t3wtk-base` | Design system & foundation: page templates, navigation, footer, design tokens, light/dark theme, site settings, default theme |
+| `connetation/t3wtk-elements` | 30+ content elements in eight categories |
+| `connetation/t3wtk-sitepackage` | Project layer: theme overrides, forms, email templates, SEO configuration |
+| `connetation/t3wtk-demosite` | Creates a complete demo page tree with sample content |
+| `connetation/t3wtk-themes` | Theme library (in development) |
+
+Project-specific code lives only in the sitepackage, so base and elements can be updated
+via Composer like any other dependency without overwriting your customizations.
+
+## Highlights
+
+- **Design once, theme everywhere:** colors, logo, navbar, footer, buttons and border radius
+  as TYPO3 site settings. 250+ options, editable in the Sites module.
+- **Full dark mode** with its own color palette and theme toggle, per site, no extra CSS
+- **30+ content elements:** hero and card sliders, video hero, before/after comparison,
+  mosaic and lightbox galleries, accordion, tabs, flip cards, timeline, pricing tables,
+  stats/counter, testimonials, team, map & location and more
+- **Five container layouts** (2/3/4 columns, narrow/wide, wide/narrow), nestable
+- **Shared design options for every element:** spacing, content width up to full-bleed,
+  backgrounds (color, image, parallax), scroll and text animations
+- **Built on TYPO3 standards:** Site Sets, Fluid, Composer, core "Text & Media" as a base,
+  regular TYPO3 content records with no proprietary structures
+- **Performance:** responsive images, lazy loading, CSS/JS loaded only for elements actually
+  used on a page
+- **Accessibility-minded markup:** Bootstrap 5, semantic HTML, clean heading hierarchy,
+  keyboard-operable widgets
+- **Included:** contact form (Form Framework) with branded email templates, SEO setup via
+  cs_seo (Open Graph, Twitter Cards, structured data), favicon/branding set, three icon
+  libraries (Bootstrap Icons, Font Awesome, Ionicons)
+
+## Requirements
+
+- TYPO3 14 LTS (tested on 14.3), Composer mode
+- Uses `b13/container` and `clickstorm/cs_seo`
+
+## Quick start
+
+1. `composer require connetation/t3wtk-base connetation/t3wtk-elements`
+2. Add the T3WTK site set to your site configuration
+3. Configure colors, logo, navigation and footer in the site settings
+4. Build pages with the ready-made content elements
+
+Want to explore first? Install `connetation/t3wtk-demosite` or visit https://demosite.connetation.at
+
+## Feedback & contributing
+
+T3WTK is a young open-source project. Bug reports, ideas and pull requests are welcome via
+GitHub Issues and Discussions.
+
+---
+
+## This package: `connetation/t3wtk-demosite`
+
+Demo site for the Connetation TYPO3 Web Toolkit (T3WTK). Automatically creates a complete page tree with site configuration, sample content and six color themes. Ideal for evaluation and as a reference.
 
 Introduction package for the TYPO3 Web Toolkit (t3wtk), in the spirit of TYPO3's
 `typo3/cms-introduction`. Installing it creates a complete, good-looking
@@ -9,7 +75,7 @@ and `connetation/t3wtk-sitepackage`.
 Use it to show clients what the TYPO3 Web Toolkit can do, to try out elements, or as a
 reference for how each element is configured.
 
-## Installation
+### Installation
 
 ```bash
 composer require connetation/t3wtk-demosite
@@ -37,7 +103,7 @@ install again, delete the demo page tree and the `t3kit-demosite` site, then:
 vendor/bin/typo3 t3wtk:demosite:install --force
 ```
 
-### Site base
+#### Site base
 
 - **Fresh installation (no other site):** the demo gets base `/`.
 - **Next to existing sites:** the demo gets `/t3kit-demo/` on the same
@@ -45,7 +111,7 @@ vendor/bin/typo3 t3wtk:demosite:install --force
 
 Adjust `base` in Site Management afterwards if you want it somewhere else.
 
-## Themes
+### Themes
 
 The look comes from **connetation/t3wtk-base**'s theme Sets (colors light + dark,
 navigation and footer layout, see its README). The demo site uses two Sets:
@@ -88,7 +154,7 @@ The demo content is theme-neutral on purpose. Content color fields only
 store `#rrggbbaa` values and can't follow the theme, so bands use slate and
 translucent gray. Buttons, icons, eyebrows, links and cards follow the theme.
 
-## What gets created
+### What gets created
 
 | Page | Elements |
 |---|---|
@@ -113,7 +179,7 @@ Everything is regular TYPO3 content: edit or delete it like any other page.
 Not included: the Video Hero element (it needs a video file or YouTube/Vimeo
 media, which can't be shipped offline), news and events.
 
-## Changing the demo content
+### Changing the demo content
 
 Everything is declared in **`Configuration/DemoSite/Definition.php`**: pages,
 their content, site configuration and site settings. The format is documented
@@ -152,7 +218,7 @@ logo. The Set wires them up via the `branding.*` settings; regenerate them with:
 ddev exec vendor/connetation/t3wtk-demosite/Build/generate-favicons.sh
 ```
 
-## Structure
+### Structure
 
 ```
 connetation/t3wtk-demosite/                   # ext key: conn_t3wtk_demosite
@@ -169,3 +235,7 @@ connetation/t3wtk-demosite/                   # ext key: conn_t3wtk_demosite
 ├── Initialisation/Files/images/       # Copied to fileadmin/conn_t3wtk_demosite/
 └── Resources/Public/Icons/Favicon/    # Demo favicons (branding.* settings)
 ```
+
+## License
+
+GPL-2.0-or-later · Developed by Connetation Web Engineering GmbH, Salzburg, Austria

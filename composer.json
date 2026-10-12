@@ -1,6 +1,7 @@
 {
     "name": "connetation/t3wtk-demosite",
-    "description": "Connetation TYPO3 Web Toolkit demo site – installs a complete demo page tree, site configuration and content built with connetation/t3wtk-base and connetation/t3wtk-elements (TYPO3 LTS 14)",
+    "description": "Demo site for the Connetation TYPO3 Web Toolkit (T3WTK). Automatically creates a complete page tree with site configuration, sample content and six color themes. Ideal for evaluation and as a reference.",
+    "keywords": ["TYPO3", "TYPO3 CMS", "extension", "t3wtk", "toolkit", "sitepackage", "theme", "design system", "content elements", "bootstrap", "site sets", "dark mode"],
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
     "require": {
