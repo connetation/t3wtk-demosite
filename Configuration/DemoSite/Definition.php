@@ -115,13 +115,13 @@ $cta = static fn(string $header, string $text, string $label = 'Get in touch', s
     'bodytext' => '<p class="text-center lead">' . $text . '</p><p class="text-center">' . $button($label, $target, 'btn-primary btn-lg') . '</p>',
 ] + $darkBand();
 
-/** Feature item (bootstrap icon). */
-$feature = static fn(string $icon, string $title, string $body, string $linkPage = ''): array => [
+/** Feature item (bootstrap icon). Link labels must describe the target — "Learn more" alone fails link-text audits. */
+$feature = static fn(string $icon, string $title, string $body, string $linkPage = '', string $linkLabel = ''): array => [
     'icon_library' => 'bootstrap-icons',
     'icon' => $icon,
     'title' => $title,
     'body' => '<p>' . $body . '</p>',
-] + ($linkPage !== '' ? ['link' => 't3://page?uid={page:' . $linkPage . '}', 'link_label' => 'Learn more'] : []);
+] + ($linkPage !== '' ? ['link' => 't3://page?uid={page:' . $linkPage . '}', 'link_label' => $linkLabel ?: 'More about ' . $title] : []);
 
 /** Slide for the hero/card/thumbs sliders. */
 $slide = static fn(string $image, string $title, string $subtitle, string $linkPage = '', string $linkLabel = 'Discover more', array $extra = []): array => [
@@ -136,7 +136,7 @@ $card = static fn(string $image, string $title, string $body, string $linkPage =
     'body' => '<p>' . $body . '</p>',
     'badge' => $badge,
     '_files' => ['image' => [$image]],
-] + ($linkPage !== '' ? ['link' => 't3://page?uid={page:' . $linkPage . '}', 'link_label' => 'Read more'] : []);
+] + ($linkPage !== '' ? ['link' => 't3://page?uid={page:' . $linkPage . '}', 'link_label' => 'More about ' . $title] : []);
 
 /** Text Icon element. */
 $textIcon = static fn(string $icon, string $header, string $text, string $shape = 'circle', string $position = 'top'): array => [
@@ -155,6 +155,7 @@ $textIcon = static fn(string $icon, string $header, string $text, string $shape 
 $showcasePage = static fn(string $key, string $title, string $teaser, string $image, array $content): array => [
     '_key' => $key,
     'title' => $title,
+    'description' => $teaser,
     'abstract' => $teaser,
     'tx_conn_t3wtk_elements_card_teaser' => '<p>' . $teaser . '</p>',
     '_files' => ['tx_conn_t3wtk_elements_card_media' => [$image]],
@@ -202,7 +203,7 @@ $testimonials = [
 $logoWall = [
     'CType' => 'conn_logo_wall',
     'header' => 'Trusted by teams everywhere',
-    'header_layout' => '5',
+    'header_layout' => '3',
     'header_position' => 'center',
     'space_before_class' => 'large',
     '_inline' => ['tx_conn_t3wtk_elements_logo_wall_items' => array_map(
@@ -235,6 +236,7 @@ $faq = [
 $pages = [[
     '_key' => 'home',
     'title' => 'Home',
+    'description' => 'Demo site of the Connetation TYPO3 Web Toolkit (t3wtk): themeable content elements, dark mode and site settings for TYPO3 LTS 14.',
     'is_siteroot' => 1,
     'backend_layout' => 'pagets__conn_topcontent',
     'backend_layout_next_level' => 'pagets__conn_default',
@@ -263,8 +265,8 @@ $pages = [[
             'header' => 'Why t3wtk?',
             'header_layout' => '100',
             '_inline' => ['tx_conn_t3wtk_elements_feature_grid_items' => [
-                $feature('grid-1x2', '30+ content elements', 'Sliders, galleries, cards, pricing tables, timelines and more — ready for editors.', 'elements'),
-                $feature('palette', 'Themeable', 'Every color, the logo, navbar and footer are site settings. Dark mode included.', 'features'),
+                $feature('grid-1x2', '30+ content elements', 'Sliders, galleries, cards, pricing tables, timelines and more — ready for editors.', 'elements', 'Explore all content elements'),
+                $feature('palette', 'Themeable', 'Every color, the logo, navbar and footer are site settings. Dark mode included.', 'features', 'Discover the theming features'),
                 $feature('lightning-charge', 'Fast by default', 'Lean CSS and JavaScript, lazy loading and responsive images out of the box.'),
                 $feature('universal-access', 'Accessible', 'Semantic HTML, proper heading levels and keyboard-friendly widgets.'),
                 $feature('phone', 'Responsive', 'Built on Bootstrap 5 — looks great on every screen size.'),
@@ -326,12 +328,14 @@ $pages = [[
         [
             '_key' => 'features',
             'title' => 'Features',
+            'description' => 'How t3wtk-base, t3wtk-elements and your sitepackage work together: site settings, dark mode, column layouts, backgrounds, animations and forms.',
             '_content' => [
                 $intro('Features', 'A toolkit, not a template', 'Three extensions work together: connetation/t3wtk-base provides the design system and page templates, connetation/t3wtk-elements the content elements, and your sitepackage the project-specific touches.'),
                 [
                     'CType' => 'conn_grid_3col',
                     'header' => 'Packages',
-                    'header_layout' => '100',
+                    'header_layout' => '2',
+                    'tx_conn_t3wtk_base_header_class' => 'visually-hidden',
                     '_children' => [
                         210 => [$textIcon('layers', 't3wtk-base', 'Page templates, navigation, footer, design tokens, light/dark theme and site settings.')],
                         211 => [$textIcon('grid-3x3-gap', 't3wtk-elements', 'More than 30 content elements — sliders, galleries, cards, data and interactive widgets.')],
@@ -378,12 +382,14 @@ $pages = [[
         [
             '_key' => 'elements',
             'title' => 'Elements',
+            'description' => 'Showcase of all t3wtk content elements for TYPO3 — text, cards, sliders, galleries, interactive widgets and data elements with real content.',
             '_content' => [
                 $intro('Showcase', 'Content elements', 'Every element from connetation/t3wtk-elements, grouped by purpose. Pick a group to see the elements with real content.'),
                 [
                     'CType' => 'conn_subpage_cards',
                     'header' => 'Element groups',
-                    'header_layout' => '100',
+                    'header_layout' => '2',
+                    'tx_conn_t3wtk_base_header_class' => 'visually-hidden',
                     'tx_conn_t3wtk_elements_subpage_cards_source' => '',
                     '_flexform' => [
                         'sDEF' => ['settings.columns' => '3', 'settings.style' => 'shadow', 'settings.accentBar' => '1'],
@@ -528,9 +534,9 @@ $pages = [[
                         'header_layout' => '2',
                         'space_before_class' => 'extra-large',
                         '_inline' => ['tx_conn_t3wtk_elements_carousel_items' => [
-                            ['title' => 'First slide', 'caption' => $p('Captions with title and text.'), '_files' => ['image' => ['hero-indigo.jpg']]],
-                            ['title' => 'Second slide', 'caption' => $p('Optional fade effect and autoplay.'), '_files' => ['image' => ['hero-sunset.jpg']]],
-                            ['title' => 'Third slide', 'caption' => $p('Opens in a lightbox if you like.'), '_files' => ['image' => ['hero-ocean.jpg']]],
+                            ['title' => 'First slide', 'title_layout' => '3', 'caption' => $p('Captions with title and text.'), '_files' => ['image' => ['hero-indigo.jpg']]],
+                            ['title' => 'Second slide', 'title_layout' => '3', 'caption' => $p('Optional fade effect and autoplay.'), '_files' => ['image' => ['hero-sunset.jpg']]],
+                            ['title' => 'Third slide', 'title_layout' => '3', 'caption' => $p('Opens in a lightbox if you like.'), '_files' => ['image' => ['hero-ocean.jpg']]],
                         ]],
                         '_flexform' => ['sDEF' => ['settings.aspectRatio' => '21x9', 'settings.fade' => '1', 'settings.autoplay' => '1', 'settings.style' => 'shadow']],
                     ],
@@ -683,6 +689,7 @@ $pages = [[
         [
             '_key' => 'about',
             'title' => 'About',
+            'description' => 'Example about page built with t3wtk: company story, team members, key figures and a milestone timeline.',
             '_content' => [
                 $intro('About us', 'We build websites people enjoy using', 'A fictional agency to show how an about page can look with t3wtk. Replace this text with your own story.'),
                 [
@@ -739,12 +746,14 @@ $pages = [[
         [
             '_key' => 'pricing',
             'title' => 'Pricing',
+            'description' => 'Example pricing page built with t3wtk: pricing table with featured tier, logo wall and frequently asked questions.',
             '_content' => [
                 $intro('Pricing', 'Simple, transparent pricing', 'Example pricing tiers — the Pricing Table element supports featured tiers, badges and unavailable features.'),
                 [
                     'CType' => 'conn_bs_pricing',
                     'header' => 'Plans',
-                    'header_layout' => '100',
+                    'header_layout' => '2',
+                    'tx_conn_t3wtk_base_header_class' => 'visually-hidden',
                     '_inline' => ['tx_conn_t3wtk_elements_pricing_tiers' => [
                         ['name' => 'Starter', 'tagline' => 'For small websites', 'currency' => '€', 'amount' => '29', 'period' => 'per month', 'features' => "Up to 10 pages\nAll content elements\nEmail support\n-Multi-language\n-Custom design", 'cta_label' => 'Choose Starter', 'cta_link' => 't3://page?uid={page:contact}'],
                         ['name' => 'Business', 'tagline' => 'For growing companies', 'currency' => '€', 'amount' => '79', 'period' => 'per month', 'features' => "Unlimited pages\nAll content elements\nPriority support\nMulti-language\n-Custom design", 'cta_label' => 'Choose Business', 'cta_link' => 't3://page?uid={page:contact}', 'featured' => 1, 'badge_text' => 'Most popular'],
@@ -760,6 +769,7 @@ $pages = [[
         [
             '_key' => 'contact',
             'title' => 'Contact',
+            'description' => 'Contact Connetation Web Engineering GmbH in Salzburg — contact form, phone, email and address of the t3wtk team.',
             '_content' => [
                 $intro('Contact', 'Let’s talk', 'Send us a message using the form below — it is the contact form shipped with connetation/t3wtk-sitepackage, including client-side validation and branded emails.'),
                 [
@@ -770,7 +780,7 @@ $pages = [[
                         240 => [[
                             'CType' => 'form_formframework',
                             'header' => 'Write us',
-                            'header_layout' => '3',
+                            'header_layout' => '2',
                             '_flexform' => ['sDEF' => [
                                 'settings.persistenceIdentifier' => 'EXT:conn_t3wtk_sitepackage/Resources/Private/Forms/Contact.form.yaml',
                                 'settings.overrideFinishers' => '0',
@@ -796,6 +806,7 @@ $pages = [[
         [
             '_key' => 'imprint',
             'title' => 'Imprint',
+            'description' => 'Imprint of the t3wtk demo site: Connetation Web Engineering GmbH, Vogelweiderstraße 44A, 5020 Salzburg, Austria.',
             'nav_hide' => 1,
             '_content' => [
                 ['CType' => 'text', 'header' => 'Imprint', 'header_layout' => '1', 'bodytext' => $p(
@@ -813,6 +824,7 @@ $pages = [[
         [
             '_key' => 'privacy',
             'title' => 'Privacy Policy',
+            'description' => 'Privacy policy of the t3wtk demo site: contact form data, no tracking, no third-party cookies.',
             'nav_hide' => 1,
             '_content' => [
                 ['CType' => 'conn_text_column', 'header' => 'Privacy Policy', 'header_layout' => '1', 'bodytext' => $p('This is a placeholder privacy policy for the t3wtk demo site. Replace it with a policy that matches the data processing of your website.', 'The contact form sends the entered data by email to the site owner. No data is stored in the database by the demo form.', 'This demo site does not use tracking or third-party cookies. The maps show a static image instead of loading an external map provider.')],
@@ -821,6 +833,7 @@ $pages = [[
         [
             '_key' => 'notfound',
             'title' => 'Page not found',
+            'description' => 'The requested page of the t3wtk demo site could not be found.',
             'nav_hide' => 1,
             'no_search' => 1,
             '_content' => [
