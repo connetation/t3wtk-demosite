@@ -29,7 +29,9 @@ use TYPO3\CMS\Core\Configuration\SiteConfiguration;
 use TYPO3\CMS\Core\Configuration\SiteWriter;
 use TYPO3\CMS\Core\DataHandling\DataHandler;
 use TYPO3\CMS\Core\Registry;
+use TYPO3\CMS\Core\Resource\Enum\DuplicationBehavior;
 use TYPO3\CMS\Core\Resource\File;
+use TYPO3\CMS\Core\Resource\ResourceStorage;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Schema\TcaSchemaFactory;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
@@ -346,11 +348,30 @@ final class DemoSiteInstaller
     {
         $storage = $this->storageRepository->getDefaultStorage()
             ?? throw new \RuntimeException('No default file storage (fileadmin) found.', 1759140005);
-        $file = $storage->getFile(self::FILE_FOLDER . $fileName);
+        $identifier = '/' . self::FILE_FOLDER . $fileName;
+        if (!$storage->hasFile($identifier)) {
+            // The core copies Initialisation/Files to fileadmin only once per extension — files
+            // added in a later version of this package are missing after an update.
+            $this->copyFileFromPackage($storage, $fileName);
+        }
+        $file = $storage->getFile($identifier);
         if (!$file instanceof File) {
             throw new \RuntimeException(sprintf('Demo file "%s" not found in fileadmin/%s.', $fileName, self::FILE_FOLDER), 1759140006);
         }
         return $file;
+    }
+
+    private function copyFileFromPackage(ResourceStorage $storage, string $fileName): void
+    {
+        $source = ExtensionManagementUtility::extPath(self::EXTENSION_KEY) . 'Initialisation/Files/images/' . $fileName;
+        if (!is_file($source)) {
+            return;
+        }
+        $folderIdentifier = '/' . self::FILE_FOLDER;
+        $folder = $storage->hasFolder($folderIdentifier)
+            ? $storage->getFolder($folderIdentifier)
+            : $storage->createFolder(trim(self::FILE_FOLDER, '/'));
+        $storage->addFile($source, $folder, $fileName, DuplicationBehavior::REPLACE, false);
     }
 
     /**

@@ -32,7 +32,7 @@ $EM_CONF[$_EXTKEY] = [
             'typo3' => '14.0.0-14.99.99',
             'form' => '14.0.0-14.99.99',
             'conn_t3wtk_base' => '3.0.8-0.0.0',
-            'conn_t3wtk_elements' => '3.0.8-0.0.0',
+            'conn_t3wtk_elements' => '3.1.4-0.0.0',
         ],
         'suggests' => [
             'conn_t3wtk_sitepackage' => '3.0.0-0.0.0',

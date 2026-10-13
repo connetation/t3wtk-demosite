@@ -564,8 +564,8 @@ $pages = [[
                         ],
                     ],
                 ]),
-                $showcasePage('galleries', 'Galleries', 'Mosaic and flip galleries, a filterable flip carousel and a logo wall.', 'card-rose.jpg', [
-                    $intro('Galleries', 'Galleries', 'Show images in masonry, justified or metro layouts, expand them with Flip animations or filter them by category.'),
+                $showcasePage('galleries', 'Galleries', 'Mosaic and lightbox galleries, a filterable shift carousel and a logo wall.', 'card-rose.jpg', [
+                    $intro('Galleries', 'Galleries', 'Show images in masonry, justified or metro layouts, expand them in a lightbox or filter them by category.'),
                     [
                         'CType' => 'conn_mosaic_gallery',
                         'header' => 'Mosaic Gallery',
@@ -577,24 +577,24 @@ $pages = [[
                         '_flexform' => ['sDEF' => ['settings.layoutType' => 'masonry', 'settings.columns' => '4', 'settings.gap' => 'medium'], 'sDisplay' => ['settings.hoverEffect' => 'zoom', 'settings.captionStyle' => 'overlay']],
                     ],
                     [
-                        'CType' => 'conn_flip_gallery',
-                        'header' => 'Flip Gallery',
+                        'CType' => 'conn_lightbox_gallery',
+                        'header' => 'Lightbox Gallery',
                         'header_layout' => '2',
                         'subheader' => 'Click an image to expand it',
                         'space_before_class' => 'extra-large',
-                        '_inline' => ['tx_conn_t3wtk_elements_flip_gallery_items' => array_map(
+                        '_inline' => ['tx_conn_t3wtk_elements_lightbox_gallery_items' => array_map(
                             static fn(array $item) => ['title' => $item[1], 'caption' => '<p>' . $item[2] . '</p>', '_files' => ['image' => [$item[0]]]],
                             [['card-violet.jpg', 'Violet', 'Deep purple tones.'], ['card-emerald.jpg', 'Emerald', 'Fresh greens.'], ['card-rose.jpg', 'Rose', 'Warm pinks.'], ['card-sky.jpg', 'Sky', 'Light blues.'], ['card-amber.jpg', 'Amber', 'Golden hues.'], ['card-teal.jpg', 'Teal', 'Calm cyan.']]
                         )],
                         '_flexform' => ['sDEF' => ['settings.columns' => '3', 'settings.gap' => 'medium'], 'border' => ['settings.borderStyle' => 'none']],
                     ],
                     [
-                        'CType' => 'conn_flip_carousel',
-                        'header' => 'Flip Carousel',
+                        'CType' => 'conn_shift_carousel',
+                        'header' => 'Shift Carousel',
                         'header_layout' => '2',
-                        'subheader' => 'Flip cards with category, text and link',
+                        'subheader' => 'Cards with category, text and link',
                         'space_before_class' => 'extra-large',
-                        '_inline' => ['tx_conn_t3wtk_elements_flip_carousel_items' => [
+                        '_inline' => ['tx_conn_t3wtk_elements_shift_carousel_items' => [
                             ['title' => 'Corporate site', 'subtitle' => 'Web', 'category' => 'Web', 'body' => $p('A multi-language corporate website.'), '_files' => ['image' => ['card-violet.jpg']]],
                             ['title' => 'Brand identity', 'subtitle' => 'Branding', 'category' => 'Branding', 'body' => $p('Logo, colors and typography.'), '_files' => ['image' => ['card-amber.jpg']]],
                             ['title' => 'Online shop', 'subtitle' => 'Web', 'category' => 'Web', 'body' => $p('Product catalogue with checkout.'), '_files' => ['image' => ['card-teal.jpg']]],

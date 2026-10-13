@@ -164,7 +164,7 @@ translucent gray. Buttons, icons, eyebrows, links and cards follow the theme.
 | ├ Text & Typography | Text & Media, Text (Columns), Quote, Text Icon, Alert (4 styles) |
 | ├ Cards & Layout | Card Group, Feature Grid (steps), Narrow + Wide, 4 Columns, Card Stack |
 | ├ Sliders | Parallax Slider, Bootstrap Carousel, Thumbnails Slider, Before/After |
-| ├ Galleries | Mosaic Gallery, Flip Gallery, Flip Carousel, Logo Wall (grid) |
+| ├ Galleries | Mosaic Gallery, Lightbox Gallery, Shift Carousel, Logo Wall (grid) |
 | ├ Interactive | Tabs, Accordion, Process, Timeline |
 | └ Data & People | Stats, People, Testimonials (carousel), Map |
 | **About** | Wide + Narrow, People (reveal), Stats, Timeline, CTA |
