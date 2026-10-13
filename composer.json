@@ -4,6 +4,18 @@
     "keywords": ["TYPO3", "TYPO3 CMS", "extension", "t3wtk", "toolkit", "sitepackage", "theme", "design system", "content elements", "bootstrap", "site sets", "dark mode"],
     "type": "typo3-cms-extension",
     "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/connetation/t3wtk-demosite",
+    "support": {
+        "issues": "https://github.com/connetation/t3wtk-demosite/issues",
+        "source": "https://github.com/connetation/t3wtk-demosite"
+    },
+    "authors": [
+        {
+            "name": "Connetation Web Engineering GmbH",
+            "email": "office@connetation.at",
+            "homepage": "https://www.connetation.at/"
+        }
+    ],
     "require": {
         "typo3/cms-core": "^14.0",
         "typo3/cms-form": "^14.0",

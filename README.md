@@ -84,6 +84,8 @@ composer require connetation/t3wtk-demosite
 vendor/bin/typo3 extension:setup -e conn_t3wtk_demosite
 ```
 
+Classic (non-Composer) installations can install the extension `conn_t3wtk_demosite` from the [TYPO3 Extension Repository](https://extensions.typo3.org/extension/conn_t3wtk_demosite).
+
 `connetation/t3wtk-sitepackage` must already be installed in the project. It is only
 suggested in `composer.json`, not required, because every project owns its own
 copy of it (e.g. `t3kit-quickstart-shell` moves it to `packages/` as a

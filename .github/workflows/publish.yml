@@ -1,0 +1,36 @@
+name: Publish to TER
+
+on:
+  push:
+    tags:
+      - '[0-9]+.[0-9]+.[0-9]+'
+
+jobs:
+  ter-publish:
+    runs-on: ubuntu-latest
+    env:
+      TYPO3_API_TOKEN: ${{ secrets.TYPO3_API_TOKEN }}
+      EXTENSION_KEY: conn_t3wtk_demosite
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          tools: composer:v2
+
+      - name: Install tailor
+        run: composer global require typo3/tailor --no-interaction
+
+      - name: Build release directory (honours .gitattributes export-ignore)
+        run: |
+          mkdir -p "$RUNNER_TEMP/release"
+          git archive HEAD | tar -x -C "$RUNNER_TEMP/release"
+
+      - name: Publish ${{ github.ref_name }}
+        working-directory: ${{ runner.temp }}/release
+        run: |
+          TAILOR="$(composer global config bin-dir --absolute)/tailor"
+          "$TAILOR" set-version "${GITHUB_REF_NAME}" --no-docs
+          "$TAILOR" ter:publish "${GITHUB_REF_NAME}" "$EXTENSION_KEY" \
+            --comment "Release ${GITHUB_REF_NAME}. See https://github.com/${GITHUB_REPOSITORY}/releases/tag/${GITHUB_REF_NAME}"
