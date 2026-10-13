@@ -875,6 +875,7 @@ return [
     // image can't suit light and dark navbars.
     'settings' => [
         'branding.logoAlt' => 'Connetation',
+        'footer.copyrightName' => 'Connetation Web Engineering GmbH',
         'footer.tagline' => 'Beautiful TYPO3 websites, built with the TYPO3 Web Toolkit.',
         'footer.navigation.type' => 'list',
         'footer.navigation.pages' => '{page:features},{page:elements},{page:about},{page:pricing},{page:contact}',
