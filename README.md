@@ -172,7 +172,7 @@ translucent gray. Buttons, icons, eyebrows, links and cards follow the theme.
 | ├ Interactive | Tabs, Accordion, Process, Timeline |
 | └ Data & People | Stats, People, Testimonials (carousel), Map |
 | **About** | Wide + Narrow, People (reveal), Stats, Timeline, CTA |
-| **Pricing** | Pricing Table, Logo Wall, FAQ, CTA |
+| **Products** | Pricing Table (free toolkit, demo bundle, project request), Logo Wall, FAQ, CTA |
 | **Contact** | Contact form (from `connetation/t3wtk-sitepackage`) + Text Icons, Map |
 | Imprint, Privacy Policy | Hidden in menu, linked in the footer bar |
 | Page not found | 404 error page of the site |
