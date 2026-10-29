@@ -21,7 +21,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Connetation TYPO3 Web Toolkit: Demo Site',
-    'description' => 'Demo site for the Connetation TYPO3 Web Toolkit (T3WTK). Automatically creates a complete page tree with site configuration, sample content and six color themes. Ideal for evaluation and as a reference.',
+    'description' => 'Ideal for evaluation and as a reference: demo site for the Connetation TYPO3 Web Toolkit (T3WTK). Automatically creates a complete page tree with site configuration, sample content and six color themes.',
     'category' => 'distribution',
     'author' => 'Connetation Web Engineering GmbH',
     'author_email' => 'office@connetation.at',

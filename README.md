@@ -66,7 +66,7 @@ GitHub Issues and Discussions.
 
 ## This package: `connetation/t3wtk-demosite`
 
-Demo site for the Connetation TYPO3 Web Toolkit (T3WTK). Automatically creates a complete page tree with site configuration, sample content and six color themes. Ideal for evaluation and as a reference.
+Ideal for evaluation and as a reference: demo site for the Connetation TYPO3 Web Toolkit (T3WTK). Automatically creates a complete page tree with site configuration, sample content and six color themes.
 
 Introduction package for the TYPO3 Web Toolkit (t3wtk), in the spirit of TYPO3's
 `typo3/cms-introduction`. Installing it creates a complete, good-looking
