@@ -4,6 +4,8 @@
 
 From an empty TYPO3 installation to a complete, themeable website in hours instead of weeks.
 
+**Want to explore first?** Visit the live demo at https://demosite.connetation.at or install `connetation/t3wtk-demosite`.
+
 T3WTK is a modular set of TYPO3 extensions for TYPO3 14 LTS. It replaces the groundwork
 that has to be redone on almost every project: sitepackage, page templates, navigation,
 footer, content elements, dark mode, forms and SEO setup. Once installed via Composer,
@@ -54,8 +56,6 @@ via Composer like any other dependency without overwriting your customizations.
 2. Add the T3WTK site set to your site configuration
 3. Configure colors, logo, navigation and footer in the site settings
 4. Build pages with the ready-made content elements
-
-Want to explore first? Install `connetation/t3wtk-demosite` or visit https://demosite.connetation.at
 
 ## Feedback & contributing
 
