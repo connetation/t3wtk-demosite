@@ -37,9 +37,13 @@ $p = static fn(string ...$paragraphs): string => '<p>' . implode('</p><p>', $par
 /** Bullet list. */
 $ul = static fn(string ...$items): string => '<ul><li>' . implode('</li><li>', $items) . '</li></ul>';
 
-/** Button link for RTE text. */
-$button = static fn(string $label, string $pageKey, string $style = 'btn-primary'): string
-    => '<a href="t3://page?uid={page:' . $pageKey . '}" class="btn ' . $style . '">' . $label . '</a>';
+/** Mail link to Connetation with a prefilled subject — the demo contact form does not send anything. */
+$mailto = static fn(string $topic = ''): string
+    => 'mailto:office@connetation.at?subject=' . rawurlencode('t3wtk contact request' . ($topic !== '' ? ': ' . $topic : ''));
+
+/** Button link for RTE text; $target is a page key or a full link (e.g. from $mailto). */
+$button = static fn(string $label, string $target, string $style = 'btn-primary'): string
+    => '<a href="' . htmlspecialchars(str_contains($target, ':') ? $target : 't3://page?uid={page:' . $target . '}') . '" class="btn ' . $style . '">' . $label . '</a>';
 
 /** Page intro: eyebrow + big heading + lead text. */
 $intro = static fn(string $eyebrow, string $header, string $text, string $layout = '1', string $position = 'center'): array => [
@@ -253,13 +257,13 @@ $pages = [[
             // Directly below the navbar: no default spacer above the slider
             'space_before_class' => 'none',
             '_inline' => ['tx_conn_t3wtk_elements_hero_slider_items' => [
-                $slide('hero-indigo.jpg', 'Build beautiful TYPO3 websites', 'A complete toolkit of themeable content elements for TYPO3 LTS 14.', 'elements', 'Explore the elements', ['text_animation' => 'words', 'bg_animation' => 'zoom']),
+                $slide('hero-indigo.jpg', 'This is the t3wtk demo site', 'Sample content showing the Connetation TYPO3 Web Toolkit for TYPO3 LTS 14.', 'elements', 'Explore the elements', ['text_animation' => 'words', 'bg_animation' => 'zoom']),
                 $slide('hero-ocean.jpg', 'Design once, theme everywhere', 'Colors, logo, navigation and dark mode — all configurable as site settings.', 'features', 'See the features', ['text_animation' => 'lines', 'bg_animation' => 'zoom', 'text_pos_h' => 'center', 'text_pos_v' => 'center']),
                 $slide('hero-sunset.jpg', 'Fast, accessible, editor-friendly', 'Semantic markup, great Lighthouse scores and a backend editors enjoy.', 'contact', 'Get in touch', ['text_animation' => 'chars', 'bg_animation' => 'zoom']),
             ]],
             '_flexform' => ['sDEF' => ['settings.height' => '80', 'settings.effect' => 'fade', 'settings.autoplay' => '1', 'settings.autoplay_delay' => '5000']],
         ],
-        $intro('t3wtk demo', 'Everything you need for a modern TYPO3 website', 'This demo site was created automatically when the t3wtk demo extension was installed. Every page shows real content elements from connetation/t3wtk-elements — open the page module and see how they are configured.', '2'),
+        $intro('Demo site', 'This website is a demo', 'It shows what the TYPO3 Web Toolkit (t3wtk) by Connetation can do. Every page uses real content elements from connetation/t3wtk-elements, but the companies, projects, testimonials and figures are sample content. Want t3wtk for your project? Write to <a href="' . $mailto() . '">office@connetation.at</a>.', '2'),
         [
             'CType' => 'conn_feature_grid',
             'header' => 'Why t3wtk?',
@@ -756,9 +760,9 @@ $pages = [[
                     'tx_conn_t3wtk_base_header_class' => 'visually-hidden',
                     // An empty amount renders as "Free"
                     '_inline' => ['tx_conn_t3wtk_elements_pricing_tiers' => [
-                        ['name' => 'Toolkit', 'tagline' => 'Base, elements and sitepackage', 'price_note' => 'Open source, GPL-2.0-or-later', 'features' => "30+ content elements\nLight and dark theme\nSite Sets for TYPO3 LTS 14\nInstall via Composer", 'cta_label' => 'Get the quickstart', 'cta_link' => 'https://github.com/connetation/t3wtk-quickstart-shell'],
-                        ['name' => 'Demo bundle', 'tagline' => 'See everything in action', 'price_note' => 'Open source, GPL-2.0-or-later', 'features' => "Complete demo page tree\nSample content for every element\nSix color themes\nInstalls with one command", 'cta_label' => 'Request the demo bundle', 'cta_link' => 't3://page?uid={page:contact}', 'featured' => 1, 'badge_text' => 'Try it first'],
-                        ['name' => 'Project request', 'tagline' => 'Your website, built by Connetation', 'amount' => 'On request', 'features' => "Theme and design for your brand\nCustom content elements\nUpdates and maintenance\nEditor training", 'cta_label' => 'Send a project request', 'cta_link' => 't3://page?uid={page:contact}'],
+                        ['name' => 'Toolkit', 'tagline' => 'Base, elements and sitepackage', 'price_note' => 'Open source, GPL-2.0-or-later', 'features' => "30+ content elements\nLight and dark theme\nSite Sets for TYPO3 LTS 14\nInstall via Composer", 'cta_label' => 'Get the quickstart', 'cta_link' => $mailto('Toolkit')],
+                        ['name' => 'Demo bundle', 'tagline' => 'See everything in action', 'price_note' => 'Open source, GPL-2.0-or-later', 'features' => "Complete demo page tree\nSample content for every element\nSix color themes\nInstalls with one command", 'cta_label' => 'Request the demo bundle', 'cta_link' => $mailto('Demo bundle'), 'featured' => 1, 'badge_text' => 'Try it first'],
+                        ['name' => 'Project request', 'tagline' => 'Your website, built by Connetation', 'amount' => 'On request', 'features' => "Theme and design for your brand\nCustom content elements\nUpdates and maintenance\nEditor training", 'cta_label' => 'Send a project request', 'cta_link' => $mailto('Project request')],
                     ]],
                     '_flexform' => ['sDEF' => ['settings.columns' => '3', 'settings.style' => 'shadow', 'settings.accentBar' => '1']],
                 ],
@@ -767,7 +771,7 @@ $pages = [[
                     ['title' => 'Does t3wtk cost anything?', 'body' => $p('No. All t3wtk packages are open source under GPL-2.0-or-later. You only pay if you want us to build, extend or maintain your website.')],
                     ...$faq['_inline']['tx_conn_t3wtk_elements_accordion_items'],
                 ]]]),
-                $cta('Ready to try t3wtk?', 'Request the demo bundle or tell us about your project.', 'Send a request'),
+                $cta('Ready to try t3wtk?', 'Request the demo bundle or tell us about your project.', 'Send a request', $mailto()),
             ],
         ],
         [
